@@ -9,32 +9,6 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
-    let tabBar = UITabBarController()
-    
-    let feedView = UIViewController()
-    feedView.title = "Лента новостей"
-    feedView.view.backgroundColor = .blue
-    feedView.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 0)
-    
-    let profileView = UIViewController()
-    profileView.title = "Профиль"
-    profileView.view.backgroundColor = .gray
-    profileView.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 1)
-    
-    let controllers = [feedView, profileView]
-    tabBar.viewControllers = controllers.map(
-        UINavigationController(rootViewController: $0)
-    )
-    
-    tabBar.selectedIndex = 0
-    
-    let postView = UIViewController()
-    postView.title = "Просмотр поста"
-    postView.view.backgroundColor = .cyan
-    
-    
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

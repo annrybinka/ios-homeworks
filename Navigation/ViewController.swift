@@ -14,7 +14,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .orange
         print("viewDidLoad")
-        
+ /*
         let button: UIButton = .init(type: .system)
         button.setTitle("Кнопка", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -23,7 +23,9 @@ class ViewController: UIViewController {
         button.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         button.widthAnchor.constraint(equalToConstant: 60).isActive = true
         button.heightAnchor.constraint(equalToConstant: 30).isActive = true
+  */
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         // вью располагается по заданным параметрам
