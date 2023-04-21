@@ -6,7 +6,12 @@ class PostViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemCyan
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "More", style: .plain, target: self, action: #selector(moreTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "More",
+            style: .plain,
+            target: self,
+            action: #selector(moreTapped)
+        )
     
     }
     

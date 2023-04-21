@@ -2,36 +2,54 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     
-    let headerText: UILabel = {
+    let fullNameLabel: UILabel = {
         let view = UILabel()
         view.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         view.textColor = .black
         view.text = "Hipster Cat"
         view.numberOfLines = 0
+        view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
     }()
     
-    let headerImage: UIImageView = {
+    let avatarImageView: UIImageView = {
         let view = UIImageView()
+        view.layer.borderWidth = 3
+        view.layer.borderColor = UIColor.white.cgColor
+        view.image = UIImage(named: "cat")
+        view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
         return view
     }()
     
-    let headerButton: UIButton = {
+    let setStatusButton: UIButton = {
         let view = UIButton()
         view.backgroundColor = .blue
         view.setTitle("Show status", for: .normal)
         view.setTitleColor(.white, for: .normal)
         view.setTitleColor(.green, for: .highlighted)
+        view.layer.cornerRadius = 16
+        view.layer.shadowOffset = CGSize(width: 4, height: 4)
+        view.layer.shadowRadius = 4
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.7
+        view.clipsToBounds = false
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
         return view
     }()
     
-    let headerStatus: UILabel = {
+    let statusLabel: UILabel = {
         let view = UILabel()
         view.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         view.textColor = .gray
         view.text = "Waiting for status..."
         view.numberOfLines = 0
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
         return view
     }()
 
@@ -46,60 +64,33 @@ class ProfileHeaderView: UIView {
     
     func setupUI() {
         
-        addSubview(headerText)
-        addSubview(headerImage)
-        addSubview(headerButton)
-        addSubview(headerStatus)
+        addSubview(fullNameLabel)
+        addSubview(avatarImageView)
+        addSubview(setStatusButton)
+        addSubview(statusLabel)
         
-        headerImage.translatesAutoresizingMaskIntoConstraints = false
         let imageHeight = 100
-        NSLayoutConstraint.activate([
-            headerImage.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            headerImage.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
-            headerImage.heightAnchor.constraint(equalToConstant: CGFloat(imageHeight)),
-            headerImage.widthAnchor.constraint(equalToConstant: CGFloat(imageHeight))
-        ])
+        avatarImageView.layer.cornerRadius = CGFloat(imageHeight/2)
         
-        headerText.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            headerText.topAnchor.constraint(equalTo: topAnchor, constant: 27),
-            headerText.leftAnchor.constraint(equalTo: headerImage.rightAnchor, constant: 16)
+            avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            avatarImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
+            avatarImageView.heightAnchor.constraint(equalToConstant: CGFloat(imageHeight)),
+            avatarImageView.widthAnchor.constraint(equalToConstant: CGFloat(imageHeight)),
+            
+            fullNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 27),
+            fullNameLabel.leftAnchor.constraint(equalTo: avatarImageView.rightAnchor, constant: 16),
+            
+            setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 16),
+            setStatusButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
+            setStatusButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
+            setStatusButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            statusLabel.leftAnchor.constraint(equalTo: avatarImageView.rightAnchor, constant: 16),
+            statusLabel.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -34)
         ])
 
-        headerButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            headerButton.topAnchor.constraint(equalTo: headerImage.bottomAnchor, constant: 16),
-            headerButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
-            headerButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
-            headerButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
-
-        headerStatus.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            headerStatus.leftAnchor.constraint(equalTo: headerImage.rightAnchor, constant: 16),
-            headerStatus.bottomAnchor.constraint(equalTo: headerButton.topAnchor, constant: -34)
-        ])
-
-        headerImage.layer.borderWidth = 3
-        headerImage.layer.borderColor = UIColor.white.cgColor
-        headerImage.layer.cornerRadius = CGFloat(imageHeight/2)
-        //способ из лекции (не работает)
-//        headerImage.layer.contents = UIImage(named: "cat")?.cgImage
-//        headerImage.layer.contentsGravity = .resizeAspect
-//        headerImage.layer.masksToBounds = true
-        //свой вариант
-        headerImage.image = UIImage(named: "cat")
-        headerImage.clipsToBounds = true
-        headerImage.contentMode = .scaleAspectFill
-
-        headerButton.layer.cornerRadius = 16
-        headerButton.layer.shadowOffset = CGSize(width: 4, height: 4)
-        headerButton.layer.shadowRadius = 4
-        headerButton.layer.shadowColor = UIColor.black.cgColor
-        headerButton.layer.shadowOpacity = 0.7
-        headerButton.clipsToBounds = false
-        
-        headerButton.addTarget(
+        setStatusButton.addTarget(
             self,
             action: #selector(onButonPressed(_:)),
             for: .touchUpInside
@@ -107,8 +98,8 @@ class ProfileHeaderView: UIView {
 
     }
     
-    @objc func onButonPressed(_ sender: UIBarButtonItem) {
-        print((headerStatus.text)!)
+    @objc func onButonPressed(_ sender: UIButton) {
+        print((statusLabel.text)!)
     }
 
 }
