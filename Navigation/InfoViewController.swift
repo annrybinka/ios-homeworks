@@ -1,15 +1,7 @@
-//
-//  InfoViewController.swift
-//  Navigation
-//
-//  Created by Zhukova on 12.03.2023.
-//
-
 import UIKit
 
 class InfoViewController: UIViewController {
     
-
     let textLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
@@ -20,7 +12,6 @@ class InfoViewController: UIViewController {
 
         return label
     }()
-    
     
     let alertButton: UIButton = {
         let button = UIButton(type: .system)
@@ -38,7 +29,7 @@ class InfoViewController: UIViewController {
         view.addSubview(textLabel)
         NSLayoutConstraint.activate([
             textLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-            textLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 10),
+            textLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             textLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50)
         ])
         
