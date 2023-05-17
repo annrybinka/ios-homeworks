@@ -98,11 +98,11 @@ class LogInViewController: UIViewController {
 //    let handler: UIButton.ConfigurationUpdateHandler = { button in
 //        switch button.state {
 //        case .normal:
-//            button.configuration?.alpha = 1.0
+//            button.configuration?.background.customView?.alpha = 1.0
 //        case [.selected, .highlighted, .disabled]:
-//            button.configuration?.alpha = 0.8
+//            button.configuration?.background.customView?.alpha = 0.8
 //        default:
-//            button.configuration?.alpha = 1.0
+//            button.configuration?.background.customView?.alpha = 1.0
 //        }
 //    }
     
