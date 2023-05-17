@@ -11,16 +11,16 @@ struct Post {
 class ProfileViewController: UIViewController {
 
     private var dataSource = [
-        Post(author: "Mary", description: "About yoga, about yoga, about yoga, about yoga, about yoga, about yoga, about yoga, about yoga, about yoga", image: "yoga", likes: 15, views: 30),
-        Post(author: "Harry", description: "About food", image: "food", likes: 21, views: 45),
-        Post(author: "Jerry", description: "About sport", image: "sport", likes: 13, views: 101),
-        Post(author: "Julia", description: "About cars", image: "cars", likes: 99, views: 156)
+        Post(author: "Mary Asana", description: "Text about yoga, about yoga, about yoga, about yoga, about yoga, about yoga, about yoga, about yoga, about yoga", image: "yoga", likes: 15, views: 30),
+        Post(author: "Chef Harry", description: "10 egg breakfast recipes", image: "food", likes: 21, views: 45),
+        Post(author: "Nike dairy", description: "Just do it", image: "sport", likes: 13, views: 101),
+        Post(author: "Buy a new Hyundai 2023 from an authorized dealer", description: "The best cars this year", image: "cars", likes: 99, views: 156)
     ]
     
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
-        
+        tableView.backgroundColor = .lightGray
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
@@ -38,9 +38,7 @@ class ProfileViewController: UIViewController {
     }
     
     func setupTable() {
-//        с использованием метода из лекции хэдер тоже отображается некорректно
-//        tableView.setAndLayout(headerView: ProfileHeaderView())
-        tableView.tableHeaderView = ProfileHeaderView()
+        tableView.setAndLayout(headerView: ProfileHeaderView())
         tableView.tableFooterView = UIView()
         
         tableView.register(

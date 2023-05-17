@@ -6,8 +6,11 @@ extension UITableView {
         tableHeaderView = headerView
         headerView.translatesAutoresizingMaskIntoConstraints = false
         
-        headerView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
-        
+        NSLayoutConstraint.activate([
+            headerView.widthAnchor.constraint(equalTo: widthAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: 200)
+        ])
+       
         headerView.setNeedsLayout()
         headerView.layoutIfNeeded()
         headerView.frame.size = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
