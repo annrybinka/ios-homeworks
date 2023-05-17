@@ -21,14 +21,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             tag: 0
         )
         
-        let profileViewController = ProfileViewController()
-        profileViewController.tabBarItem = UITabBarItem(
+        let logInViewController = LogInViewController()
+        logInViewController.tabBarItem = UITabBarItem(
             title: "Профиль",
             image: UIImage(systemName: "person.crop.circle.fill"),
             tag: 1
         )
         
-        let controllers = [feedViewController, profileViewController]
+        let controllers = [feedViewController, logInViewController]
         tabBarController.viewControllers = controllers.map {
             UINavigationController(rootViewController: $0)
         }
