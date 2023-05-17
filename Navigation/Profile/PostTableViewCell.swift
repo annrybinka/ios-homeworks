@@ -16,7 +16,7 @@ class PostTableViewCell: UITableViewCell {
     
     let postImageView: UIImageView = {
         let view = UIImageView()
-//        view.backgroundColor = .black
+        view.backgroundColor = .black
         view.contentMode = .scaleAspectFit
         view.translatesAutoresizingMaskIntoConstraints = false
         
@@ -56,7 +56,7 @@ class PostTableViewCell: UITableViewCell {
         postText.text = post.description
         postImageView.image = UIImage(named: post.image)
         likesLabel.text = "Likes: \(post.likes)"
-        viewsLabel.text = "Views: \(post.likes)"
+        viewsLabel.text = "Views: \(post.views)"
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -100,9 +100,12 @@ class PostTableViewCell: UITableViewCell {
             
             likesLabel.topAnchor.constraint(equalTo: postText.bottomAnchor, constant: 16),
             likesLabel.leadingAnchor.constraint(equalTo: postText.leadingAnchor),
+            likesLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
             
             viewsLabel.topAnchor.constraint(equalTo: postText.bottomAnchor, constant: 16),
-            viewsLabel.trailingAnchor.constraint(equalTo: postText.trailingAnchor)
+            viewsLabel.trailingAnchor.constraint(equalTo: postText.trailingAnchor),
+            viewsLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
+            
         ])
     }
 

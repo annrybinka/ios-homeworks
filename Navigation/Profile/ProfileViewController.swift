@@ -38,6 +38,7 @@ class ProfileViewController: UIViewController {
     }
     
     func setupTable() {
+//        с использованием метода из лекции хэдер тоже отображается некорректно
 //        tableView.setAndLayout(headerView: ProfileHeaderView())
         tableView.tableHeaderView = ProfileHeaderView()
         tableView.tableFooterView = UIView()
