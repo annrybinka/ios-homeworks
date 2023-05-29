@@ -1,25 +1,11 @@
 import UIKit
 
-struct Post {
-    var author: String
-    var description: String
-    var image: String
-    var likes: Int
-    var views: Int
-}
-
 class ProfileViewController: UIViewController {
-
-    private var dataSource = [
-        Post(author: "Mary Asana", description: "Text about yoga, about yoga, about yoga, about yoga, about yoga, about yoga, about yoga, about yoga, about yoga", image: "yoga", likes: 15, views: 30),
-        Post(author: "Chef Harry", description: "10 egg breakfast recipes", image: "food", likes: 21, views: 45),
-        Post(author: "Nike dairy", description: "Just do it", image: "sport", likes: 13, views: 101),
-        Post(author: "Buy a new Hyundai 2023 from an authorized dealer", description: "The best cars this year", image: "cars", likes: 99, views: 156)
-    ]
     
+    let assetNames = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"]
     
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView()
+    private lazy var postTableView: UITableView = {
+        let tableView = UITableView(frame: .null, style: .grouped)
         tableView.backgroundColor = .lightGray
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.estimatedRowHeight = 100
@@ -27,40 +13,56 @@ class ProfileViewController: UIViewController {
         return tableView
     }()
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+        
+        postTableView.indexPathsForSelectedRows?.forEach{ indexPath in
+            postTableView.deselectRow(
+                at: indexPath,
+                animated: animated
+            )
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .lightGray
-        navigationController?.navigationBar.isHidden = true
-        
+     
         setupUI()
         setupTable()
         
     }
     
     func setupTable() {
-        tableView.setAndLayout(headerView: ProfileHeaderView())
-        tableView.tableFooterView = UIView()
+        postTableView.setAndLayout(headerView: ProfileHeaderView())
+        postTableView.tableFooterView = UIView()
         
-        tableView.register(
+        postTableView.register(
             PostTableViewCell.self,
             forCellReuseIdentifier: PostTableViewCell.id
         )
         
-        tableView.delegate = self
-        tableView.dataSource = self
+        postTableView.register(
+            PhotosTableViewCell.self,
+            forCellReuseIdentifier: PhotosTableViewCell.id
+        )
+        
+        postTableView.delegate = self
+        postTableView.dataSource = self
     }
     
     func setupUI() {
         
-        view.addSubview(tableView)
+        view.addSubview(postTableView)
         
         let safeAreaGuide = view.safeAreaLayoutGuide
         
         NSLayoutConstraint.activate([
-            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            tableView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: safeAreaGuide.bottomAnchor)
+            postTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            postTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            postTableView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor),
+            postTableView.bottomAnchor.constraint(equalTo: safeAreaGuide.bottomAnchor)
         ])
     }
 
@@ -68,14 +70,46 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        2
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        dataSource.count
+        if section == 0 {
+            return 1
+        } else {
+            return dataSource.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.id, for: indexPath) as? PostTableViewCell else { return UITableViewCell() }
-        let post = dataSource[indexPath.row]
-        cell.configure(with: post)
-        return cell
+        if indexPath.section == 0 {
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: PhotosTableViewCell.id, for: indexPath
+            ) as? PhotosTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.configure(assetNames: Array(assetNames.prefix(4)))
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: PostTableViewCell.id, for: indexPath
+            ) as? PostTableViewCell else {
+                return UITableViewCell()
+            }
+            let post = dataSource[indexPath.row]
+            cell.configure(with: post)
+            return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            let photosViewController = PhotosViewController()
+            photosViewController.photosNames = assetNames
+            photosViewController.title = "Photo Gallery"
+            self.navigationController?.pushViewController(photosViewController, animated: true)
+            navigationController?.navigationBar.isHidden = false
+        }
     }
 }

@@ -74,19 +74,19 @@ class ProfileHeaderView: UIView {
         
         NSLayoutConstraint.activate([
             avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            avatarImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
+            avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             avatarImageView.heightAnchor.constraint(equalToConstant: CGFloat(imageHeight)),
             avatarImageView.widthAnchor.constraint(equalToConstant: CGFloat(imageHeight)),
             
             fullNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 27),
-            fullNameLabel.leftAnchor.constraint(equalTo: avatarImageView.rightAnchor, constant: 16),
+            fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
             
             setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 16),
-            setStatusButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
-            setStatusButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
+            setStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             setStatusButton.heightAnchor.constraint(equalToConstant: 50),
             
-            statusLabel.leftAnchor.constraint(equalTo: avatarImageView.rightAnchor, constant: 16),
+            statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
             statusLabel.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -34)
         ])
 
