@@ -6,7 +6,11 @@ class ProfileViewController: UIViewController {
     
     private lazy var postTableView: UITableView = {
         let tableView = UITableView(frame: .null, style: .grouped)
+        #if DEBUG
         tableView.backgroundColor = .lightGray
+        #else
+        tableView.backgroundColor = UIColor(named: "AccentColor")
+        #endif
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
@@ -27,7 +31,11 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        #if DEBUG
         view.backgroundColor = .lightGray
+        #else
+        view.backgroundColor = UIColor(named: "AccentColor")
+        #endif
      
         setupUI()
         setupTable()
