@@ -1,3 +1,4 @@
+import SnapKit
 import UIKit
 
 class ProfileHeaderView: UIView {
@@ -8,8 +9,7 @@ class ProfileHeaderView: UIView {
         view.textColor = .black
         view.text = "Hipster Cat"
         view.numberOfLines = 0
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
+
         return view
     }()
     
@@ -20,8 +20,7 @@ class ProfileHeaderView: UIView {
         view.image = UIImage(named: "cat")
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
+       
         return view
     }()
     
@@ -37,8 +36,7 @@ class ProfileHeaderView: UIView {
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOpacity = 0.7
         view.clipsToBounds = false
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
+       
         return view
     }()
     
@@ -48,54 +46,63 @@ class ProfileHeaderView: UIView {
         view.textColor = .gray
         view.text = "Waiting for status..."
         view.numberOfLines = 0
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
+       
         return view
     }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupUI()
+        addSubviews()
+        setupConstraints()
+        addTargetButton()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupUI() {
-        
+    func addSubviews() {
         addSubview(fullNameLabel)
         addSubview(avatarImageView)
         addSubview(setStatusButton)
         addSubview(statusLabel)
-        
+    }
+    
+    func setupConstraints() {
         let imageHeight = 100
         avatarImageView.layer.cornerRadius = CGFloat(imageHeight/2)
         
-        NSLayoutConstraint.activate([
-            avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            avatarImageView.heightAnchor.constraint(equalToConstant: CGFloat(imageHeight)),
-            avatarImageView.widthAnchor.constraint(equalToConstant: CGFloat(imageHeight)),
-            
-            fullNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 27),
-            fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
-            
-            setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 16),
-            setStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            setStatusButton.heightAnchor.constraint(equalToConstant: 50),
-            
-            statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
-            statusLabel.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -34)
-        ])
-
+        avatarImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(16)
+            make.leading.equalToSuperview().offset(16)
+            make.height.equalTo(imageHeight)
+            make.width.equalTo(imageHeight)
+        }
+        
+        fullNameLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(27)
+            make.leading.equalTo(avatarImageView.snp.trailing).offset(16)
+        }
+        
+        setStatusButton.snp.makeConstraints { make in
+            make.top.equalTo(avatarImageView.snp.bottom).offset(16)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(50)
+        }
+        
+        statusLabel.snp.makeConstraints { make in
+            make.leading.equalTo(avatarImageView.snp.trailing).offset(16)
+            make.bottom.equalTo(setStatusButton.snp.top).offset(-34)
+        }
+    }
+    
+    func addTargetButton() {
         setStatusButton.addTarget(
             self,
             action: #selector(onButonPressed(_:)),
             for: .touchUpInside
         )
-
     }
     
     @objc func onButonPressed(_ sender: UIButton) {

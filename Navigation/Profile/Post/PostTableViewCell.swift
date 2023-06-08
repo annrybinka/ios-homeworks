@@ -1,4 +1,5 @@
 import UIKit
+import iOSIntPackage
 
 class PostTableViewCell: UITableViewCell {
     
@@ -54,9 +55,17 @@ class PostTableViewCell: UITableViewCell {
     func configure(with post: Post) {
         authorLabel.text = post.author
         postTextLabel.text = post.description
-        postImageView.image = UIImage(named: post.image)
         likesLabel.text = "Likes: \(post.likes)"
         viewsLabel.text = "Views: \(post.views)"
+        let postImage = UIImage(named: post.image)
+        guard let postImage else { return }
+        let imageProcessor = ImageProcessor()
+        imageProcessor.processImage(
+            sourceImage: postImage,
+            filter: .sepia(intensity: 0.7)
+        ) { convertedImage in
+            postImageView.image = convertedImage
+        }
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

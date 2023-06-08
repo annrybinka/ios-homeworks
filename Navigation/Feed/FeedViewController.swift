@@ -1,8 +1,9 @@
 import UIKit
+import StorageService
 
 class FeedViewController: UIViewController {
     
-    let postTitle = "Мои лучшие рецепты"
+    let postTitle = PostTitle(title: "Мои лучшие рецепты")
     
     let button1: UIButton = {
         let view = UIButton(type: .system)
@@ -60,7 +61,7 @@ class FeedViewController: UIViewController {
     
     @objc func onButonPressed(_ sender: UIButton) {
         let postViewController = PostViewController()
-        postViewController.title = postTitle
+        postViewController.title = postTitle.title
         self.navigationController?.pushViewController(postViewController, animated: true)
     }
     
