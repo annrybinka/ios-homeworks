@@ -54,7 +54,6 @@ class ProfileViewController: UIViewController {
     }
     
     func setupTable() {
-//        postTableView.setAndLayout(headerView: ProfileHeaderView())
         let headerView = ProfileHeaderView()
         headerView.configure(user: user)
         headerView.bounds.size.height = 200

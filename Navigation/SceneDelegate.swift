@@ -13,32 +13,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         
         let tabBarController = UITabBarController()
-        
-        let feedViewController = FeedViewController()
-        feedViewController.tabBarItem = UITabBarItem(
-            title: "Лента",
-            image: UIImage(systemName: "line.horizontal.3"),
-            tag: 0
-        )
-        #if DEBUG
-        let userService = TestUserService()
-        #else
-        let realUser = User(
-            login: "1234",
-            fullName: "New Hipster Cat",
-            avatar: UIImage(named: "cat") ?? UIImage(),
-            status: "Everything is difficult"
-        )
-        let userService = CurrentUserService(user: realUser)
-        #endif
-        let logInViewController = LogInViewController(userService: userService)
-        logInViewController.tabBarItem = UITabBarItem(
-            title: "Профиль",
-            image: UIImage(systemName: "person.crop.circle.fill"),
-            tag: 1
-        )
-        
-        let controllers = [feedViewController, logInViewController]
+                
+        let controllers = createViewControllers()
         tabBarController.viewControllers = controllers.map {
             UINavigationController(rootViewController: $0)
         }
@@ -51,7 +27,33 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = window
     }
     
-    //func
+    func createViewControllers() -> [UIViewController] {
+        let feedViewController = FeedViewController()
+        feedViewController.tabBarItem = UITabBarItem(
+            title: "Лента",
+            image: UIImage(systemName: "line.horizontal.3"),
+            tag: 0
+        )
+#if DEBUG
+        let userService = TestUserService()
+#else
+        let realUser = User(
+            login: "1234",
+            fullName: "New Hipster Cat",
+            avatar: UIImage(named: "cat") ?? UIImage(),
+            status: "Everything is difficult"
+        )
+        let userService = CurrentUserService(user: realUser)
+#endif
+        let logInViewController = LogInViewController(userService: userService)
+        logInViewController.tabBarItem = UITabBarItem(
+            title: "Профиль",
+            image: UIImage(systemName: "person.crop.circle.fill"),
+            tag: 1
+        )
+        
+        return [feedViewController, logInViewController]
+    }
 
     func sceneDidDisconnect(_ scene: UIScene) { }
 

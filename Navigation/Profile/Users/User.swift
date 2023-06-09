@@ -13,5 +13,3 @@ final class User {
         self.status = status
     }
 }
-
-

@@ -210,11 +210,6 @@ class LogInViewController: UIViewController {
         let login = loginText.text
         
         guard let login, !login.isEmpty else { return print("No login") }
-//        #if DEBUG
-//        let currentUser = TestUserService()
-//        #else
-//        let currentUser = CurrentUserService(user: realUser)
-//        #endif
         let currentUser = userService.autorize(login: login)
         
         guard let currentUser else { return print("Wrong login") }
