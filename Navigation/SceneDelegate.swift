@@ -20,8 +20,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             image: UIImage(systemName: "line.horizontal.3"),
             tag: 0
         )
-        
-        let logInViewController = LogInViewController()
+        #if DEBUG
+        let userService = TestUserService()
+        #else
+        let realUser = User(
+            login: "1234",
+            fullName: "New Hipster Cat",
+            avatar: UIImage(named: "cat") ?? UIImage(),
+            status: "Everything is difficult"
+        )
+        let userService = CurrentUserService(user: realUser)
+        #endif
+        let logInViewController = LogInViewController(userService: userService)
         logInViewController.tabBarItem = UITabBarItem(
             title: "Профиль",
             image: UIImage(systemName: "person.crop.circle.fill"),
@@ -40,6 +50,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         self.window = window
     }
+    
+    //func
 
     func sceneDidDisconnect(_ scene: UIScene) { }
 

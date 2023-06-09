@@ -4,6 +4,17 @@ class ProfileViewController: UIViewController {
     
     let assetNames = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"]
     
+    let user: User
+
+    init(user: User) {
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     private lazy var postTableView: UITableView = {
         let tableView = UITableView(frame: .null, style: .grouped)
         #if DEBUG
@@ -43,7 +54,11 @@ class ProfileViewController: UIViewController {
     }
     
     func setupTable() {
-        postTableView.setAndLayout(headerView: ProfileHeaderView())
+//        postTableView.setAndLayout(headerView: ProfileHeaderView())
+        let headerView = ProfileHeaderView()
+        headerView.configure(user: user)
+        headerView.bounds.size.height = 200
+        postTableView.tableHeaderView = headerView
         postTableView.tableFooterView = UIView()
         
         postTableView.register(

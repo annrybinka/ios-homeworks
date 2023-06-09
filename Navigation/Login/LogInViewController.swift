@@ -2,6 +2,17 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
+    let userService: UserService
+    
+    init(userService: UserService) {
+        self.userService = userService
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = true
@@ -30,7 +41,7 @@ class LogInViewController: UIViewController {
         return view
     }()
     
-    private lazy var emailText: UITextField = {
+    private lazy var loginText: UITextField = {
         let view = UITextField()
         view.placeholder = "Email or phone"
         view.backgroundColor = .systemGray6
@@ -88,7 +99,7 @@ class LogInViewController: UIViewController {
         stackView.layer.borderColor = UIColor.lightGray.cgColor
         stackView.spacing = 0
         
-        stackView.addArrangedSubview(emailText)
+        stackView.addArrangedSubview(loginText)
         stackView.addArrangedSubview(delimiter)
         stackView.addArrangedSubview(passwordText)
         
@@ -196,7 +207,18 @@ class LogInViewController: UIViewController {
     }
     
     @objc func onButonPressed(_ sender: UIButton) {
-        let profileViewController = ProfileViewController()
+        let login = loginText.text
+        
+        guard let login, !login.isEmpty else { return print("No login") }
+//        #if DEBUG
+//        let currentUser = TestUserService()
+//        #else
+//        let currentUser = CurrentUserService(user: realUser)
+//        #endif
+        let currentUser = userService.autorize(login: login)
+        
+        guard let currentUser else { return print("Wrong login") }
+        let profileViewController = ProfileViewController(user: currentUser)
         self.navigationController?.pushViewController(profileViewController, animated: true)
     }
     

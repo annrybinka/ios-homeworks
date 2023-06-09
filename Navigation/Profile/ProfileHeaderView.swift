@@ -6,7 +6,6 @@ class ProfileHeaderView: UIView {
         let view = UILabel()
         view.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         view.textColor = .black
-        view.text = "Hipster Cat"
         view.numberOfLines = 0
         view.translatesAutoresizingMaskIntoConstraints = false
         
@@ -17,7 +16,6 @@ class ProfileHeaderView: UIView {
         let view = UIImageView()
         view.layer.borderWidth = 3
         view.layer.borderColor = UIColor.white.cgColor
-        view.image = UIImage(named: "cat")
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -46,12 +44,17 @@ class ProfileHeaderView: UIView {
         let view = UILabel()
         view.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         view.textColor = .gray
-        view.text = "Waiting for status..."
         view.numberOfLines = 0
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
     }()
+    
+    func configure(user: User) {
+        fullNameLabel.text = user.fullName
+        statusLabel.text = user.status
+        avatarImageView.image = user.avatar
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
