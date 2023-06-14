@@ -5,9 +5,10 @@ class PhotosViewController: UIViewController {
     var photosNames: [String] = []
     
     private var photosCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(
             frame: .zero,
-            collectionViewLayout: UICollectionViewFlowLayout()
+            collectionViewLayout: layout
         )
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
