@@ -2,6 +2,7 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
+    var loginDelegate: LoginViewControllerDelegate?
     let userService: UserService
     
     init(userService: UserService) {
@@ -208,13 +209,35 @@ class LogInViewController: UIViewController {
     
     @objc func onButonPressed(_ sender: UIButton) {
         let login = loginText.text
+        let password = passwordText.text
         
-        guard let login, !login.isEmpty else { return print("No login") }
+        guard let login, !login.isEmpty else {
+            return showAlert(message: "No login")
+        }
+        guard let password, !password.isEmpty else {
+            return showAlert(message: "No password")
+        }
+        
+        let checkResult = loginDelegate?.check(login: login, password: password)
+        guard checkResult == true else {
+            return showAlert(message: "Wrong login or password")
+        }
+        
         let currentUser = userService.autorize(login: login)
-        
-        guard let currentUser else { return print("Wrong login") }
+        guard let currentUser else { return }
         let profileViewController = ProfileViewController(user: currentUser)
         self.navigationController?.pushViewController(profileViewController, animated: true)
+    }
+    
+    private func showAlert(message: String?) {
+        let loginAlertController = UIAlertController(
+            title: "Error",
+            message: message,
+            preferredStyle: .alert
+        )
+        let OkAction = UIAlertAction(title: "OK", style: .default) {_ in }
+        loginAlertController.addAction(OkAction)
+        present(loginAlertController, animated: true)
     }
     
     private func setupKeyboardObservers() {

@@ -46,6 +46,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let userService = CurrentUserService(user: realUser)
 #endif
         let logInViewController = LogInViewController(userService: userService)
+        logInViewController.loginDelegate = MyLoginFactory.makeLoginInspector()
         logInViewController.tabBarItem = UITabBarItem(
             title: "Профиль",
             image: UIImage(systemName: "person.crop.circle.fill"),
