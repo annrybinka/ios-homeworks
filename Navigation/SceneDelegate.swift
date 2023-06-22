@@ -38,7 +38,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let userService = TestUserService()
 #else
         let realUser = User(
-            login: "1234",
+            login: "test",
             fullName: "New Hipster Cat",
             avatar: UIImage(named: "cat") ?? UIImage(),
             status: "Everything is difficult"

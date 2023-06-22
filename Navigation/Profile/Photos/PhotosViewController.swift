@@ -1,6 +1,9 @@
 import UIKit
+import iOSIntPackage
 
 class PhotosViewController: UIViewController {
+    
+    let imagePublisherFacade = ImagePublisherFacade()
     
     var photosNames: [String] = []
     
@@ -111,5 +114,12 @@ extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDele
         minimumInteritemSpacingForSectionAt section: Int
     ) -> CGFloat {
         PhotosViewController.spacing
+    }
+}
+
+extension PhotosViewController: ImageLibrarySubscriber {
+    func receive(images: [UIImage]) {
+        //some code
+        
     }
 }

@@ -45,6 +45,7 @@ class LogInViewController: UIViewController {
     private lazy var loginText: UITextField = {
         let view = UITextField()
         view.placeholder = "Email or phone"
+        view.text = "test"
         view.backgroundColor = .systemGray6
         view.textColor = .black
         view.font = UIFont.systemFont(ofSize: 16)
@@ -65,6 +66,7 @@ class LogInViewController: UIViewController {
     private lazy var passwordText: UITextField = {
         let view = UITextField()
         view.placeholder = "Password"
+        view.text = "1234"
         view.isSecureTextEntry = true
         view.backgroundColor = .systemGray6
         view.textColor = .black
