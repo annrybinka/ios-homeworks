@@ -13,8 +13,8 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
-    func configure(with photo: String) {
-        photoImageView.image = UIImage(named: photo)
+    func configure(with photo: UIImage) {
+        photoImageView.image = photo
     }
     
     override init(frame: CGRect) {
