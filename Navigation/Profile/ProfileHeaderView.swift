@@ -23,19 +23,10 @@ class ProfileHeaderView: UIView {
         return view
     }()
     
-    let setStatusButton: UIButton = {
-        let view = UIButton()
-        view.backgroundColor = .blue
-        view.setTitle("Show status", for: .normal)
-        view.setTitleColor(.white, for: .normal)
-        view.setTitleColor(.green, for: .highlighted)
-        view.layer.cornerRadius = 16
-        view.layer.shadowOffset = CGSize(width: 4, height: 4)
-        view.layer.shadowRadius = 4
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOpacity = 0.7
-        view.clipsToBounds = false
-        view.translatesAutoresizingMaskIntoConstraints = false
+    let setStatusButton: CustomButton = {
+        let view = CustomButton(title: "Show status", titleColor: .white)
+        view.layer.borderWidth = 1
+        view.layer.borderColor = UIColor.white.cgColor
         
         return view
     }()
@@ -74,6 +65,7 @@ class ProfileHeaderView: UIView {
         
         let imageHeight = 100
         avatarImageView.layer.cornerRadius = CGFloat(imageHeight/2)
+        setStatusButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
@@ -93,15 +85,13 @@ class ProfileHeaderView: UIView {
             statusLabel.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -34)
         ])
 
-        setStatusButton.addTarget(
-            self,
-            action: #selector(onButonPressed(_:)),
-            for: .touchUpInside
-        )
+        setStatusButton.tapAction = { [weak self] in
+            self?.onButtonPressed()
+        }
 
     }
     
-    @objc func onButonPressed(_ sender: UIButton) {
+    @objc func onButtonPressed() {
         print((statusLabel.text)!)
     }
 
