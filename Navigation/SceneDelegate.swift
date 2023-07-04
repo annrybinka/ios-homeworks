@@ -28,7 +28,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func createViewControllers() -> [UIViewController] {
-        let feedViewController = FeedViewController()
+        let feedModel = FeedModel()
+        let feedViewController = FeedViewController(feedModel: feedModel)
         feedViewController.tabBarItem = UITabBarItem(
             title: "Лента",
             image: UIImage(systemName: "line.horizontal.3"),

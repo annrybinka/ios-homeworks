@@ -13,13 +13,7 @@ class InfoViewController: UIViewController {
         return label
     }()
     
-    let alertButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Оценить рецепт", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-
-        return button
-    }()
+    let alertButton = CustomButton(title: "Оценить рецепт", titleColor: .white)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,26 +21,26 @@ class InfoViewController: UIViewController {
         title = "Подробнее"
         
         view.addSubview(textLabel)
+        view.addSubview(alertButton)
+        alertButton.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             textLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             textLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            textLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50)
+            textLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+        
+            alertButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            alertButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            alertButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            alertButton.heightAnchor.constraint(equalToConstant: 50)
         ])
         
-        view.addSubview(alertButton)
-        NSLayoutConstraint.activate([
-            alertButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            alertButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
-        
-        alertButton.addTarget(
-            self,
-            action: #selector(alertButonPressed(_:)),
-            for: .touchUpInside
-        )
+        alertButton.tapAction = { [weak self] in
+            self?.alertButonPressed()
+        }
     }
     
-    @objc func alertButonPressed(_ sender: UIButton) {
+    @objc func alertButonPressed() {
         let alertController = UIAlertController(title: "Оцените рецепт", message: "Если вам понравился рецепт, нажмите like, если нет - dislike", preferredStyle: .alert)
         
         let likeAction = UIAlertAction(title: "Like", style: .default) {_ in print("Пользователь поставил Like")

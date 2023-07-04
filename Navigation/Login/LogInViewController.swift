@@ -109,40 +109,17 @@ class LogInViewController: UIViewController {
         return stackView
     }()
     
-//    let handler: UIButton.ConfigurationUpdateHandler = { button in
-//        switch button.state {
-//        case .normal:
-//            button.configuration?.background.customView?.alpha = 1.0
-//        case [.selected, .highlighted, .disabled]:
-//            button.configuration?.background.customView?.alpha = 0.8
-//        default:
-//            button.configuration?.background.customView?.alpha = 1.0
-//        }
-//    }
-    
-    let logInButton: UIButton = {
-        let view = UIButton()
-        view.setBackgroundImage(UIImage(named: "blue"), for: .normal)
-        view.setTitle("Log in", for: .normal)
-        view.setTitleColor(.white, for: .normal)
-        view.layer.cornerRadius = 10
-        view.clipsToBounds = true
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-//        view.configurationUpdateHandler = handler
-        
-        return view
-    }()
+    let logInButton = CustomButton(title: "Log in", titleColor: .white)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        
+        logInButton.tapAction = { [weak self] in
+            self?.onButtonPressed()
+        }
         addSubviews()
         setupConstraints()
-        addTargetButton()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -172,6 +149,7 @@ class LogInViewController: UIViewController {
     func setupConstraints() {
         
         let safeAreaGuide = view.safeAreaLayoutGuide
+        logInButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor),
@@ -203,13 +181,7 @@ class LogInViewController: UIViewController {
         ])
     }
     
-    func addTargetButton() {
-        
-        logInButton.addTarget(self, action: #selector(onButonPressed(_:)), for: .touchUpInside)
-        
-    }
-    
-    @objc func onButonPressed(_ sender: UIButton) {
+    func onButtonPressed() {
         let login = loginText.text
         let password = passwordText.text
         
