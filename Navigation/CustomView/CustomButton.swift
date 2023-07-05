@@ -4,11 +4,12 @@ final class CustomButton: UIButton {
     
     private let title: String
     private let titleColor: UIColor
-    var tapAction: (() -> Void)?
+    private let tapAction: (() -> Void)
     
-    init(title: String, titleColor: UIColor) {
+    init(title: String, titleColor: UIColor, tapAction: @escaping () -> Void) {
         self.title = title
         self.titleColor = titleColor
+        self.tapAction = tapAction
         super.init(frame: .zero)
         
         setupButton()
@@ -29,6 +30,6 @@ final class CustomButton: UIButton {
     }
     
     @objc private func buttonTapped(_ sender: UIButton) {
-        self.tapAction?()
+        self.tapAction()
     }
 }

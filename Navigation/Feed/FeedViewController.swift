@@ -28,7 +28,8 @@ class FeedViewController: UIViewController {
         return view
     }()
     
-    private let checkGuessButton = CustomButton(title: "Проверить", titleColor: .white)
+    private lazy var checkGuessButton = CustomButton(title: "Проверить", titleColor: .white) { [weak self] in
+        self?.checkButtonPressed() }
     
     private var resultLabel: UILabel = {
         let view = UILabel()
@@ -106,9 +107,6 @@ class FeedViewController: UIViewController {
     private func addTargetOnButton() {
         button1.addTarget(self, action: #selector(onButtonPressed(_:)), for: .touchUpInside)
         button2.addTarget(self, action: #selector(onButtonPressed(_:)), for: .touchUpInside)
-        checkGuessButton.tapAction = { [weak self] in
-            self?.checkButtonPressed()
-        }
     }
     
     @objc private func onButtonPressed(_ sender: UIButton) {

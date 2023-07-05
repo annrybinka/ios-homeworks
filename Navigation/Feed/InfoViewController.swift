@@ -13,7 +13,7 @@ class InfoViewController: UIViewController {
         return label
     }()
     
-    let alertButton = CustomButton(title: "Оценить рецепт", titleColor: .white)
+    private lazy var alertButton = CustomButton(title: "Оценить рецепт", titleColor: .white) { [weak self] in self?.alertButonPressed() }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,10 +34,6 @@ class InfoViewController: UIViewController {
             alertButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             alertButton.heightAnchor.constraint(equalToConstant: 50)
         ])
-        
-        alertButton.tapAction = { [weak self] in
-            self?.alertButonPressed()
-        }
     }
     
     @objc func alertButonPressed() {

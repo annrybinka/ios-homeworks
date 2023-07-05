@@ -23,13 +23,7 @@ class ProfileHeaderView: UIView {
         return view
     }()
     
-    let setStatusButton: CustomButton = {
-        let view = CustomButton(title: "Show status", titleColor: .white)
-        view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor.white.cgColor
-        
-        return view
-    }()
+    private lazy var setStatusButton = CustomButton(title: "Show status", titleColor: .white) { [weak self] in print((self?.statusLabel.text)!) }
     
     let statusLabel: UILabel = {
         let view = UILabel()
@@ -84,15 +78,5 @@ class ProfileHeaderView: UIView {
             statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
             statusLabel.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -34)
         ])
-
-        setStatusButton.tapAction = { [weak self] in
-            self?.onButtonPressed()
-        }
-
     }
-    
-    @objc func onButtonPressed() {
-        print((statusLabel.text)!)
-    }
-
 }

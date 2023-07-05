@@ -109,15 +109,12 @@ class LogInViewController: UIViewController {
         return stackView
     }()
     
-    let logInButton = CustomButton(title: "Log in", titleColor: .white)
+    private lazy var logInButton = CustomButton(title: "Log in", titleColor: .white) { [weak self] in self?.onButtonPressed() }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        logInButton.tapAction = { [weak self] in
-            self?.onButtonPressed()
-        }
         addSubviews()
         setupConstraints()
     }
@@ -136,7 +133,7 @@ class LogInViewController: UIViewController {
         
     }
     
-    func addSubviews() {
+    private func addSubviews() {
         
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
@@ -146,7 +143,7 @@ class LogInViewController: UIViewController {
         
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         
         let safeAreaGuide = view.safeAreaLayoutGuide
         logInButton.translatesAutoresizingMaskIntoConstraints = false
@@ -181,7 +178,7 @@ class LogInViewController: UIViewController {
         ])
     }
     
-    func onButtonPressed() {
+    private func onButtonPressed() {
         let login = loginText.text
         let password = passwordText.text
         
