@@ -40,6 +40,7 @@
 		66E042CF2A3CA5850096A74C /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E042CE2A3CA5850096A74C /* LoginFactory.swift */; };
 		66FF7ACC2A4EF34A00240AA5 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FF7ACB2A4EF34A00240AA5 /* CustomButton.swift */; };
 		66FF7ACE2A4F174800240AA5 /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FF7ACD2A4F174800240AA5 /* FeedModel.swift */; };
+		66FF7AD02A58253200240AA5 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FF7ACF2A58253200240AA5 /* FeedViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +115,7 @@
 		66E042CE2A3CA5850096A74C /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
 		66FF7ACB2A4EF34A00240AA5 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		66FF7ACD2A4F174800240AA5 /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
+		66FF7ACF2A58253200240AA5 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				66FF7ACD2A4F174800240AA5 /* FeedModel.swift */,
+				66FF7ACF2A58253200240AA5 /* FeedViewModel.swift */,
 				662F634129BB8A11009D1C59 /* FeedViewController.swift */,
 				662F634529BB8E48009D1C59 /* PostViewController.swift */,
 				662F634729BE6E8D009D1C59 /* InfoViewController.swift */,
@@ -451,6 +454,7 @@
 				6604BFB529FC23430023AE10 /* LogInViewController.swift in Sources */,
 				66A333312A338B4F00B2196A /* TestUserService.swift in Sources */,
 				66E042C92A3C60D40096A74C /* LoginViewControllerDelegate.swift in Sources */,
+				66FF7AD02A58253200240AA5 /* FeedViewModel.swift in Sources */,
 				666B0B772A28F54700A1DD16 /* PostData.swift in Sources */,
 				662F634829BE6E8D009D1C59 /* InfoViewController.swift in Sources */,
 				662F634229BB8A11009D1C59 /* FeedViewController.swift in Sources */,
