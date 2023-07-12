@@ -5,10 +5,10 @@ class FeedViewController: UIViewController {
     
     let postTitle = PostTitle(title: "Мои лучшие рецепты")
     
-    private let feedModel: FeedModelProtocol
+    private var feedViewModel: FeedViewModelProtocol
     
-    init(feedModel: FeedModelProtocol) {
-        self.feedModel = feedModel
+    init(feedViewModel: FeedViewModelProtocol) {
+        self.feedViewModel = feedViewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -33,7 +33,6 @@ class FeedViewController: UIViewController {
     
     private var resultLabel: UILabel = {
         let view = UILabel()
-        view.text = "Угадайте слово"
         view.textAlignment = .center
         view.font = UIFont.systemFont(ofSize: 12, weight: .bold)
         view.textColor = .black
@@ -74,14 +73,14 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Лента"
-        view.backgroundColor = .systemOrange
+        view.backgroundColor = .white
         
         view.addSubview(stackView)
         view.addSubview(checkGuessButton)
         
         setupConstraints()
         addTargetOnButton()
-        
+        bindViewModel()
     }
     
     private func setupConstraints() {
@@ -115,17 +114,14 @@ class FeedViewController: UIViewController {
         self.navigationController?.pushViewController(postViewController, animated: true)
     }
     
-    private func checkButtonPressed() {
-        let enterText = textField.text
-        guard let enterText, !enterText.isEmpty else { return }
-    
-        let checkResult = feedModel.check(word: enterText)
-        if checkResult {
-            resultLabel.backgroundColor = .systemGreen
-            resultLabel.text = "Угадали!"
-        } else {
-            resultLabel.backgroundColor = .systemRed
-            resultLabel.text = "Не угадали..."
+    private func bindViewModel() {
+        feedViewModel.onViewStateDidChange = { [weak self] viewState in
+            self?.resultLabel.backgroundColor = viewState.color
+            self?.resultLabel.text = viewState.text
         }
+    }
+    
+    private func checkButtonPressed() {
+        feedViewModel.onWordChanged(word: textField.text)
     }
 }
