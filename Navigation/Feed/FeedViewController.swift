@@ -41,19 +41,14 @@ class FeedViewController: UIViewController {
         return view
     }()
     
-    let button1: UIButton = {
+    private lazy var button: UIButton = {
         let view = UIButton(type: .system)
-        view.setTitle("Посмотреть пост 1", for: .normal)
+        view.setTitle("Посмотреть пост", for: .normal)
+        view.addTarget(self, action: #selector(onButtonPressed(_:)), for: .touchUpInside)
         
         return view
     }()
     
-    let button2: UIButton = {
-        let view = UIButton(type: .system)
-        view.setTitle("Посмотреть пост 2", for: .normal)
-        
-        return view
-    }()
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -62,8 +57,7 @@ class FeedViewController: UIViewController {
         stackView.axis = .vertical
         stackView.spacing = 10
         
-        stackView.addArrangedSubview(button1)
-        stackView.addArrangedSubview(button2)
+        stackView.addArrangedSubview(button)
         stackView.addArrangedSubview(textField)
         stackView.addArrangedSubview(resultLabel)
         
@@ -79,7 +73,6 @@ class FeedViewController: UIViewController {
         view.addSubview(checkGuessButton)
         
         setupConstraints()
-        addTargetOnButton()
         bindViewModel()
     }
     
@@ -103,15 +96,8 @@ class FeedViewController: UIViewController {
         ])
     }
     
-    private func addTargetOnButton() {
-        button1.addTarget(self, action: #selector(onButtonPressed(_:)), for: .touchUpInside)
-        button2.addTarget(self, action: #selector(onButtonPressed(_:)), for: .touchUpInside)
-    }
-    
     @objc private func onButtonPressed(_ sender: UIButton) {
-        let postViewController = PostViewController()
-        postViewController.title = postTitle.title
-        self.navigationController?.pushViewController(postViewController, animated: true)
+        feedViewModel.onFeedPressed()
     }
     
     private func bindViewModel() {
