@@ -3,6 +3,7 @@ import UIKit
 protocol FeedViewModelProtocol {
     var onViewStateDidChange: ((FeedViewModel.ViewState) -> Void)? { get set }
     func onWordChanged(word: String?)
+    func onFeedPressed()
 }
 
 final class FeedViewModel: FeedViewModelProtocol {
@@ -13,6 +14,8 @@ final class FeedViewModel: FeedViewModelProtocol {
     }
 
     var onViewStateDidChange: ((ViewState) -> Void)?
+    
+    var coordinator: FeedCoordinator?
     
     private(set) var viewState = ViewState(text: "", color: .white) {
         didSet {
@@ -38,5 +41,9 @@ final class FeedViewModel: FeedViewModelProtocol {
         case false:
             self.viewState = ViewState(text: "Не угадали...", color: .red)
         }
+    }
+    
+    func onFeedPressed() {
+        coordinator?.pushPostViewController()
     }
 }

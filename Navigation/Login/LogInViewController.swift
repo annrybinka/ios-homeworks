@@ -2,11 +2,10 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
-    var loginDelegate: LoginViewControllerDelegate?
-    let userService: UserService
+    private var loginViewModel: LoginViewModelProtocol
     
-    init(userService: UserService) {
-        self.userService = userService
+    init(loginViewModel: LoginViewModelProtocol) {
+        self.loginViewModel = loginViewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -117,6 +116,7 @@ class LogInViewController: UIViewController {
         view.backgroundColor = .white
         addSubviews()
         setupConstraints()
+        bindViewModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -182,22 +182,13 @@ class LogInViewController: UIViewController {
         let login = loginText.text
         let password = passwordText.text
         
-        guard let login, !login.isEmpty else {
-            return showAlert(message: "No login")
+        loginViewModel.userAuthenticate(login: login, password: password)
+    }
+    
+    private func bindViewModel() {
+        loginViewModel.onAlertMessageDidChange = { [weak self] message in
+            self?.showAlert(message: message)
         }
-        guard let password, !password.isEmpty else {
-            return showAlert(message: "No password")
-        }
-        
-        let checkResult = loginDelegate?.check(login: login, password: password)
-        guard checkResult == true else {
-            return showAlert(message: "Wrong login or password")
-        }
-        
-        let currentUser = userService.autorize(login: login)
-        guard let currentUser else { return }
-        let profileViewController = ProfileViewController(user: currentUser)
-        self.navigationController?.pushViewController(profileViewController, animated: true)
     }
     
     private func showAlert(message: String?) {
