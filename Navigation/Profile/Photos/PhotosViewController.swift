@@ -4,10 +4,13 @@ import iOSIntPackage
 class PhotosViewController: UIViewController {
     
     private static let spacing: CGFloat = 8.0
-    private let imagePublisherFacade = ImagePublisherFacade()
     
     var photosNames: [String] = []
-    private var photos: [UIImage] = []
+    private var photos: [UIImage] = [] {
+        didSet {
+            DispatchQueue.main.async { self.photosCollectionView.reloadData() }
+        }
+    }
     
     private var photosCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -26,22 +29,25 @@ class PhotosViewController: UIViewController {
     
         setupCollection()
         setupUI()
+        applyFilter()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        imagePublisherFacade.subscribe(self)
-        addPhotosToFacade()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        imagePublisherFacade.removeSubscription(for: self)
-    }
-    
-    private func addPhotosToFacade() {
-        let userPhotos = photosNames.compactMap { UIImage(named: $0) }
-        imagePublisherFacade.addImagesWithTimer(time: 0.6, repeat: 12, userImages: userPhotos)
+    private func applyFilter() {
+        let imageProcessor = ImageProcessor()
+        let photos = photosNames.compactMap { UIImage(named: $0) }
+        let startTime = Date().timeIntervalSince1970
+        imageProcessor.processImagesOnThread(
+            sourceImages: photos,
+            filter: .sepia(intensity: 0.6),
+            qos: .default
+        ) { filteredImages in
+            self.photos = filteredImages.map { image in
+                guard let image else { return UIImage() }
+                return UIImage(cgImage: image)
+            }
+            let endTime = Date().timeIntervalSince1970
+            print("время работы фильтра: ", (endTime - startTime))
+        }
     }
     
     private func setupCollection() {
@@ -129,12 +135,5 @@ extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDele
         minimumInteritemSpacingForSectionAt section: Int
     ) -> CGFloat {
         PhotosViewController.spacing
-    }
-}
-
-extension PhotosViewController: ImageLibrarySubscriber {
-    func receive(images: [UIImage]) {
-        photos = images
-        photosCollectionView.reloadData()
     }
 }
