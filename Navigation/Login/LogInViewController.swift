@@ -109,6 +109,16 @@ class LogInViewController: UIViewController {
     }()
     
     private lazy var logInButton = CustomButton(title: "Log in", titleColor: .white) { [weak self] in self?.onButtonPressed() }
+    
+    private lazy var crackPasswordButton = CustomButton(title: "Crack the password", titleColor: .lightGray) { [weak self] in self?.crackPasswordPressed() }
+    
+    private var activityIndicator: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView()
+        view.hidesWhenStopped = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,20 +144,20 @@ class LogInViewController: UIViewController {
     }
     
     private func addSubviews() {
-        
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(logo)
         contentView.addSubview(stackView)
+        contentView.addSubview(activityIndicator)
         contentView.addSubview(logInButton)
-        
+        contentView.addSubview(crackPasswordButton)
     }
     
     private func setupConstraints() {
-        
         let safeAreaGuide = view.safeAreaLayoutGuide
         logInButton.translatesAutoresizingMaskIntoConstraints = false
-        
+        crackPasswordButton.translatesAutoresizingMaskIntoConstraints = false
+
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: safeAreaGuide.bottomAnchor),
@@ -169,12 +179,19 @@ class LogInViewController: UIViewController {
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
+            activityIndicator.centerXAnchor.constraint(equalTo: passwordText.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: passwordText.centerYAnchor),
+            
             logInButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
             logInButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             logInButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
             logInButton.heightAnchor.constraint(equalToConstant: 50),
-            logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
             
+            crackPasswordButton.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 16),
+            crackPasswordButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+            crackPasswordButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+            crackPasswordButton.heightAnchor.constraint(equalToConstant: 35),
+            crackPasswordButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
     
@@ -185,9 +202,23 @@ class LogInViewController: UIViewController {
         loginViewModel.userAuthenticate(login: login, password: password)
     }
     
+    private func crackPasswordPressed() {
+        loginViewModel.crackPassword()
+    }
+    
     private func bindViewModel() {
         loginViewModel.onAlertMessageDidChange = { [weak self] message in
             self?.showAlert(message: message)
+        }
+        loginViewModel.onPasswordCracked = { [weak self] crackedPassword in
+            self?.passwordText.text = crackedPassword
+            self?.passwordText.isSecureTextEntry = false
+        }
+        loginViewModel.onPasswordCrackingStarted = { [weak self] in
+            self?.activityIndicator.startAnimating()
+        }
+        loginViewModel.onPasswordCrackingFinished = { [weak self] in
+            self?.activityIndicator.stopAnimating()
         }
     }
     
