@@ -2,7 +2,7 @@ import UIKit
 
 final class User {
     let login: String
-    let password: String
+    var password: String
     let fullName: String
     let avatar: UIImage
     let status: String
