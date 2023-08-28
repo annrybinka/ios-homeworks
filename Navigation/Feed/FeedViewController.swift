@@ -104,10 +104,22 @@ class FeedViewController: UIViewController {
         feedViewModel.onViewStateDidChange = { [weak self] viewState in
             self?.resultLabel.backgroundColor = viewState.color
             self?.resultLabel.text = viewState.text
+            self?.showAlert(message: viewState.text)
         }
     }
     
     private func checkButtonPressed() {
         feedViewModel.onWordChanged(word: textField.text)
+    }
+    
+    private func showAlert(message: String?) {
+        let loginAlertController = UIAlertController(
+            title: "Error",
+            message: message,
+            preferredStyle: .alert
+        )
+        let OkAction = UIAlertAction(title: "OK", style: .default) {_ in }
+        loginAlertController.addAction(OkAction)
+        present(loginAlertController, animated: true)
     }
 }

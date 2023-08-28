@@ -40,6 +40,7 @@ final class LoginViewModel: LoginViewModelProtocol {
     }
     
     func successfulCheck(user: User) {
+        //        preconditionFailure
         coordinator?.pushProfileViewController(user: user)
     }
 }

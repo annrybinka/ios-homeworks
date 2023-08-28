@@ -1,14 +1,19 @@
 import Foundation
 
 protocol FeedModelProtocol {
-    func check(word: String) -> Bool
+    func check(word: String?) throws
 }
 
 final class FeedModel: FeedModelProtocol {
+    enum CheckError: Error {
+        case emptyWord
+        case wrongWord
+    }
     
     private let secretWord = "Hello"
     
-    func check(word: String) -> Bool {
-        secretWord == word
+    func check(word: String?) throws {
+        guard let word, !word.isEmpty else { throw CheckError.emptyWord }
+        guard secretWord == word else { throw CheckError.wrongWord }
     }
 }

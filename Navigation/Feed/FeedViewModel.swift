@@ -30,20 +30,20 @@ final class FeedViewModel: FeedViewModelProtocol {
     }
     
     func onWordChanged(word: String?) {
-        guard let word, !word.isEmpty else {
-            self.viewState = ViewState(text: "", color: .white)
-            return
-        }
-        let result = feedModel.check(word: word)
-        switch result {
-        case true:
+        do {
+            try feedModel.check(word: word)
             self.viewState = ViewState(text: "Угадали!", color: .green)
-        case false:
+        } catch FeedModel.CheckError.emptyWord {
+            self.viewState = ViewState(text: "", color: .white)
+        } catch FeedModel.CheckError.wrongWord {
             self.viewState = ViewState(text: "Не угадали...", color: .red)
+        } catch {
+            self.viewState = ViewState(text: "", color: .white)
         }
     }
     
     func onFeedPressed() {
+//        preconditionFailure
         coordinator?.pushPostViewController()
     }
 }
