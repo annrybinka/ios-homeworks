@@ -1,25 +1,25 @@
 import UIKit
 
 protocol FeedViewModelProtocol {
-    var onViewStateDidChange: ((FeedViewModel.ViewState) -> Void)? { get set }
+    var onAlertStateDidChange: ((FeedViewModel.AlertState) -> Void)? { get set }
     func onWordChanged(word: String?)
     func onFeedPressed()
 }
 
 final class FeedViewModel: FeedViewModelProtocol {
     
-    struct ViewState {
+    struct AlertState {
         let text: String
-        let color: UIColor
+        let title: String
     }
 
-    var onViewStateDidChange: ((ViewState) -> Void)?
+    var onAlertStateDidChange: ((AlertState) -> Void)?
     
     var coordinator: FeedCoordinator?
     
-    private(set) var viewState = ViewState(text: "", color: .white) {
+    private(set) var alertState = AlertState(text: "Что-то пошло не так", title: "Ошибка") {
         didSet {
-            onViewStateDidChange?(viewState)
+            onAlertStateDidChange?(alertState)
         }
     }
     
@@ -32,18 +32,27 @@ final class FeedViewModel: FeedViewModelProtocol {
     func onWordChanged(word: String?) {
         do {
             try feedModel.check(word: word)
-            self.viewState = ViewState(text: "Угадали!", color: .green)
-        } catch FeedModel.CheckError.emptyWord {
-            self.viewState = ViewState(text: "", color: .white)
-        } catch FeedModel.CheckError.wrongWord {
-            self.viewState = ViewState(text: "Не угадали...", color: .red)
+            self.alertState = AlertState(
+                text: "Вы угадали!",
+                title: "Поздравляем"
+            )
+        } catch FeedModel.CheckError.noInternet {
+            self.alertState = AlertState(
+                text: "Проблемы с интернетом,\nпопробуйте позже",
+                title: "Ошибка"
+            )
         } catch {
-            self.viewState = ViewState(text: "", color: .white)
+            self.alertState = AlertState(
+                text: "Не угадали...\nпопробуйте ещё",
+                title: "=("
+            )
         }
     }
     
     func onFeedPressed() {
-//        preconditionFailure
+        guard coordinator != nil else {
+            preconditionFailure("Something happened with coordinator")
+        }
         coordinator?.pushPostViewController()
     }
 }
