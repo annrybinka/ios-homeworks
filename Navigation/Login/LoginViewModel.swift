@@ -22,24 +22,24 @@ final class LoginViewModel: LoginViewModelProtocol {
     }
     
     func userAuthenticate(login: String?, password: String?) {
-        guard let login, !login.isEmpty else {
+        let result = loginModel.authenticate(login: login, password: password)
+        switch result {
+        case .success(let user):
+//            preconditionFailure("Something happened with \(user)")
+            successfulCheck(user: user)
+        case .failure(.noLogin):
             alertMessage = "No login"
-            return
-        }
-        guard let password, !password.isEmpty else {
+        case .failure(.noPassword):
             alertMessage = "No password"
-            return
-        }
-        let user = loginModel.authenticate(login: login, password: password)
-        guard let user else {
+        case .failure(.wrongLoginPassword):
             alertMessage = "Wrong login or password"
-            return
         }
-        
-        successfulCheck(user: user)
     }
     
     func successfulCheck(user: User) {
+        guard coordinator != nil else {
+            preconditionFailure("Something happened with coordinator")
+        }
         coordinator?.pushProfileViewController(user: user)
     }
 }

@@ -31,16 +31,6 @@ class FeedViewController: UIViewController {
     private lazy var checkGuessButton = CustomButton(title: "Проверить", titleColor: .white) { [weak self] in
         self?.checkButtonPressed() }
     
-    private var resultLabel: UILabel = {
-        let view = UILabel()
-        view.textAlignment = .center
-        view.font = UIFont.systemFont(ofSize: 12, weight: .bold)
-        view.textColor = .black
-        view.numberOfLines = 0
-        
-        return view
-    }()
-    
     private lazy var button: UIButton = {
         let view = UIButton(type: .system)
         view.setTitle("Посмотреть пост", for: .normal)
@@ -52,14 +42,12 @@ class FeedViewController: UIViewController {
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
-        
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = 10
         
         stackView.addArrangedSubview(button)
         stackView.addArrangedSubview(textField)
-        stackView.addArrangedSubview(resultLabel)
         
         return stackView
     }()
@@ -86,9 +74,6 @@ class FeedViewController: UIViewController {
             stackView.leadingAnchor.constraint(equalTo: checkGuessButton.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: checkGuessButton.trailingAnchor),
             
-            resultLabel.leadingAnchor.constraint(equalTo: checkGuessButton.leadingAnchor, constant: 70),
-            resultLabel.trailingAnchor.constraint(equalTo: checkGuessButton.trailingAnchor, constant: -70),
-            
             checkGuessButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 10),
             checkGuessButton.heightAnchor.constraint(equalToConstant: 50),
             checkGuessButton.leadingAnchor.constraint(equalTo: safeAreaGuide.leadingAnchor, constant: 50),
@@ -101,13 +86,23 @@ class FeedViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        feedViewModel.onViewStateDidChange = { [weak self] viewState in
-            self?.resultLabel.backgroundColor = viewState.color
-            self?.resultLabel.text = viewState.text
+        feedViewModel.onAlertStateDidChange = { [weak self] alertState in
+            self?.showAlert(message: alertState.text, title: alertState.title)
         }
     }
     
     private func checkButtonPressed() {
         feedViewModel.onWordChanged(word: textField.text)
+    }
+    
+    private func showAlert(message: String?, title: String) {
+        let alertController = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
+        let OkAction = UIAlertAction(title: "OK", style: .default) {_ in }
+        alertController.addAction(OkAction)
+        present(alertController, animated: true)
     }
 }
