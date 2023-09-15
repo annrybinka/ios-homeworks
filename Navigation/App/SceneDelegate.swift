@@ -3,6 +3,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var appConfiguration: AppConfiguration?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
@@ -15,6 +16,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         
         self.window = window
+        
+        guard let appConfiguration = AppConfiguration.allCases.randomElement() else {
+            print("appConfiguration is nil")
+            return
+        }
+        NetworkService.request(for: appConfiguration)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) { }

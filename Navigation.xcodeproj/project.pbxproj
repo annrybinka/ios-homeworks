@@ -22,6 +22,8 @@
 		6643EA112A5EECA8009BC2D3 /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6643EA102A5EECA8009BC2D3 /* FeedCoordinator.swift */; };
 		6643EA132A5EECBD009BC2D3 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6643EA122A5EECBD009BC2D3 /* ProfileCoordinator.swift */; };
 		665269942A41E68C00AD5E1B /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 665269932A41E68C00AD5E1B /* iOSIntPackage */; };
+		6663E8B32AAB6635008C940C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6663E8B22AAB6635008C940C /* NetworkService.swift */; };
+		6663E8B52AAB7E0B008C940C /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6663E8B42AAB7E0B008C940C /* AppConfiguration.swift */; };
 		666B0B5A2A28EB8700A1DD16 /* StorageService.docc in Sources */ = {isa = PBXBuildFile; fileRef = 666B0B592A28EB8700A1DD16 /* StorageService.docc */; };
 		666B0B602A28EB8700A1DD16 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 666B0B562A28EB8700A1DD16 /* StorageService.framework */; };
 		666B0B672A28EB8700A1DD16 /* StorageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666B0B662A28EB8700A1DD16 /* StorageServiceTests.swift */; };
@@ -96,6 +98,8 @@
 		6643EA0E2A5EEC14009BC2D3 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		6643EA102A5EECA8009BC2D3 /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
 		6643EA122A5EECBD009BC2D3 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		6663E8B22AAB6635008C940C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		6663E8B42AAB7E0B008C940C /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		666B0B562A28EB8700A1DD16 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		666B0B582A28EB8700A1DD16 /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		666B0B592A28EB8700A1DD16 /* StorageService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = StorageService.docc; sourceTree = "<group>"; };
@@ -213,6 +217,8 @@
 			children = (
 				668C11CF29AFAC28003F4312 /* AppDelegate.swift */,
 				668C11D129AFAC28003F4312 /* SceneDelegate.swift */,
+				6663E8B22AAB6635008C940C /* NetworkService.swift */,
+				6663E8B42AAB7E0B008C940C /* AppConfiguration.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -455,6 +461,8 @@
 				668C11D029AFAC28003F4312 /* AppDelegate.swift in Sources */,
 				66E042CB2A3C687F0096A74C /* LoginModel.swift in Sources */,
 				66E042CF2A3CA5850096A74C /* LoginViewModel.swift in Sources */,
+				6663E8B32AAB6635008C940C /* NetworkService.swift in Sources */,
+				6663E8B52AAB7E0B008C940C /* AppConfiguration.swift in Sources */,
 				6604BFB529FC23430023AE10 /* LogInViewController.swift in Sources */,
 				66FF7AD02A58253200240AA5 /* FeedViewModel.swift in Sources */,
 				666B0B772A28F54700A1DD16 /* PostData.swift in Sources */,
