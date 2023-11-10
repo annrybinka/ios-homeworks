@@ -39,10 +39,23 @@ class InfoViewController: UIViewController {
     @objc func alertButonPressed() {
         let alertController = UIAlertController(title: "Оцените рецепт", message: "Если вам понравился рецепт, нажмите like, если нет - dislike", preferredStyle: .alert)
         
-        let likeAction = UIAlertAction(title: "Like", style: .default) {_ in print("Пользователь поставил Like")
+        let likeAction = UIAlertAction(title: "Like", style: .default) {_ in
+            ToDoService.request(for: 4) { [weak self] todo in
+                guard let self, let todo else { return }
+                DispatchQueue.main.async {
+                    self.textLabel.text = todo.title
+                }
+            }
+            print("Пользователь поставил Like")
         }
     
         let dislikeAction = UIAlertAction(title: "Dislike", style: .default) {_ in
+            ToDoService.request(for: 13) { [weak self] todo in
+                guard let self, let todo else { return }
+                DispatchQueue.main.async {
+                    self.textLabel.text = todo.title
+                }
+            }
             print("Пользователь поставил Dislike")
         }
         
