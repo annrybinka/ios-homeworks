@@ -7,7 +7,6 @@ final class DocumentsCoordinator: Coordinatable {
     func startView() -> UIViewController {
         let documentsViewModel = DocumentsViewModel(
             fileManager: FileManagerService(),
-            rootPath: FileManager().currentDirectoryPath
             rootPath: NSSearchPathForDirectoriesInDomains(
                 .documentDirectory,
                 .userDomainMask,
