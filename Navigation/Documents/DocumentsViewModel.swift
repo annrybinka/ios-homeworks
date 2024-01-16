@@ -5,10 +5,9 @@ protocol DocumentsViewModelProtocol {
     func onViewReady()
     func onItemPressed(index: Int)
     func showImagePicker()
-    func onImagePressed(image: UIImage)
 }
 
-final class DocumentsViewModel: DocumentsViewModelProtocol {
+final class DocumentsViewModel: NSObject, DocumentsViewModelProtocol {
     let fileManager: FileManagerServiceProtocol
     let rootPath: String
     var coordinator: DocumentsCoordinator?
@@ -53,27 +52,26 @@ final class DocumentsViewModel: DocumentsViewModelProtocol {
         }
     }
     
-    func getImages() -> [UIImage] {
-        let pathToLibrary = NSSearchPathForDirectoriesInDomains(.libraryDirectory,
-        .userDomainMask, true)[0]
-        let images = fileManager.contentsOfDirectory(path: pathToLibrary).compactMap { UIImage(named: $0) }
-        return images
-    }
-    
     func showImagePicker() {
-        coordinator?.presentImagePicker(
-            delegate: self,
-            images: getImages()
-        )
+        coordinator?.presentImagePicker(delegate: self)
     }
 }
 
-extension DocumentsViewModel: ImagePickerViewControllerDelegate {
-    func onImagePressed(image: UIImage) {
-        fileManager.createFile(
-            atPath: fullPath(itemTitle: "new image.png"),
-            data: image.pngData()
-        )
-        refreshItems()
+extension DocumentsViewModel: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
+    ) {
+        if let url = info[UIImagePickerController.InfoKey.imageURL] as? URL {
+            if let image = info[.originalImage] as? UIImage {
+                fileManager.createFile(
+                    atPath: fullPath(itemTitle: "image\(url.lastPathComponent).\(url.pathExtension)"),
+                    data: image.pngData()
+                )
+                refreshItems()
+            }
+        }
+        picker.dismiss(animated: true)
     }
 }

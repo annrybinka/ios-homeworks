@@ -35,11 +35,10 @@ final class DocumentsCoordinator: Coordinatable {
         nc?.pushViewController(vc, animated: true)
     }
     
-    func presentImagePicker(delegate: ImagePickerViewControllerDelegate?, images: [UIImage]) {
+    func presentImagePicker(delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate) {
         guard nc != nil else { fatalError() }
-        let imagePicker = ImagePickerViewController()
+        let imagePicker = UIImagePickerController()
         imagePicker.delegate = delegate
-        imagePicker.photos = images
         nc?.present(imagePicker, animated: true)
     }
 }
