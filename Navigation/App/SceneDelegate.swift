@@ -11,7 +11,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: windowScene)
         
-        let appCoordinator = AppCoordinator()
+        let appCoordinator = DocumentsCoordinator()
         window.rootViewController = appCoordinator.startView()
         window.makeKeyAndVisible()
         
