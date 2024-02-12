@@ -3,13 +3,15 @@ import UIKit
 protocol DocumentsViewModelProtocol {
     var onItemsChanged: (([DocumentsViewModel.Item]) -> Void)? {get set}
     func onViewReady()
+    func currentSortState() -> Bool
     func onItemPressed(index: Int)
     func showImagePicker()
 }
 
 final class DocumentsViewModel: NSObject, DocumentsViewModelProtocol {
-    let fileManager: FileManagerServiceProtocol
+    private let fileManager: FileManagerServiceProtocol
     let rootPath: String
+    var alphabeticalSortState: Bool
     var coordinator: DocumentsCoordinator?
     var onItemsChanged: (([Item]) -> Void)?
     
@@ -19,16 +21,17 @@ final class DocumentsViewModel: NSObject, DocumentsViewModelProtocol {
         }
     }
     
-    init(fileManager: FileManagerServiceProtocol, rootPath: String) {
+    init(fileManager: FileManagerServiceProtocol, rootPath: String, alphabeticalSortState: Bool) {
         self.fileManager = fileManager
         self.rootPath = rootPath
+        self.alphabeticalSortState = alphabeticalSortState
     }
     
     private func fullPath(itemTitle: String) -> String {
         rootPath + "/" + itemTitle
     }
     
-    func refreshItems() {
+    private func refreshItems() {
         let documents = fileManager.contentsOfDirectory(path: rootPath)
         items = documents.map { name in
             Item(
@@ -36,10 +39,23 @@ final class DocumentsViewModel: NSObject, DocumentsViewModelProtocol {
                 isDirectory: fileManager.isDirectory(path: self.fullPath(itemTitle: name))
             )
         }
+        sortItems(alphabetical: alphabeticalSortState)
+    }
+    
+    func sortItems(alphabetical: Bool) {
+        if alphabetical {
+            print("=== sort Items alphabetical")
+        } else {
+            print("=== sort Items in reverse alphabetical")
+        }
     }
     
     func onViewReady() {
         refreshItems()
+    }
+    
+    func currentSortState() -> Bool {
+        UserDefaultsService.create.getSortState()
     }
     
     func onItemPressed(index: Int) {

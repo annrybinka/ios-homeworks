@@ -1,8 +1,8 @@
 import UIKit
 
 final class DocumentsCoordinator: Coordinatable {
-    
-    private var nc: UINavigationController?    
+    private var nc: UINavigationController?
+    var userDefaults: UserDefaultsService?
     
     func startView() -> UIViewController {
         let documentsViewModel = DocumentsViewModel(
@@ -11,11 +11,19 @@ final class DocumentsCoordinator: Coordinatable {
                 .documentDirectory,
                 .userDomainMask,
                 true
-            )[0]
+            )[0],
+            alphabeticalSortState: userDefaults!.getSortState()
         )
         documentsViewModel.coordinator = self
+        userDefaults?.add(observer: documentsViewModel)
+        
         let vc = DocumentsViewController(viewModel: documentsViewModel)
         vc.title =  "Documents"
+        vc.tabBarItem = UITabBarItem(
+            title: "Documents",
+            image: UIImage(systemName: "line.horizontal.3"),
+            tag: 0)
+        
         nc = UINavigationController(rootViewController: vc)
         nc?.navigationBar.prefersLargeTitles = true
         nc?.modalTransitionStyle = .coverVertical
@@ -27,9 +35,12 @@ final class DocumentsCoordinator: Coordinatable {
         guard nc != nil else { fatalError() }
         let documentsViewModel = DocumentsViewModel(
             fileManager: FileManagerService(),
-            rootPath: path
+            rootPath: path,
+            alphabeticalSortState: userDefaults!.getSortState()
         )
         documentsViewModel.coordinator = self
+        userDefaults?.add(observer: documentsViewModel)
+        
         let vc = DocumentsViewController(viewModel: documentsViewModel)
         vc.title = title
         nc?.pushViewController(vc, animated: true)
