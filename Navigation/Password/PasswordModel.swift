@@ -1,17 +1,9 @@
 import Foundation
 import KeychainAccess
 
-protocol PasswordModelProtocol {
-    func checkPasswordExists() -> Bool
-    func validate(password: String?) -> Bool
-    mutating func remember(password: String?)
-    func checkRepeated(password: String?) -> Bool
-    func save(password: String)
-    func authenticate(password: String?) -> Result<Bool, PasswordModel.PasswordError>
-}
-
-struct PasswordModel: PasswordModelProtocol {
+final class PasswordModel {
     private var firstPassword: String?
+    //TODO: check creating keychain
     let keychain = Keychain(accessGroup: "Navigation")
     
     enum PasswordError: Error {
@@ -36,7 +28,7 @@ struct PasswordModel: PasswordModelProtocol {
         return true
     }
     
-    mutating func remember(password: String?) {
+    func remember(password: String?) {
         self.firstPassword = password
     }
     

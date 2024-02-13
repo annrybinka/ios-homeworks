@@ -44,8 +44,7 @@ final class SettingsViewController: UIViewController {
     }
     
     @objc private func sortTapped(_ sender: UISwitch) {
-        print("=== sort Tapped")
-        viewModel.onSortPressed(alphabetical: switchView.isOn)
+        viewModel.onSortPressed(isAlphabetical: switchView.isOn)
     }
 }
 

@@ -12,7 +12,7 @@ final class AppCoordinator: Coordinatable {
     
     func startMainApp() {
         let tabbarCoordinator = TabbarCoordinator()
-        tabbarCoordinator.appCoordinator = self
+//        tabbarCoordinator.appCoordinator = self
         window?.rootViewController = tabbarCoordinator.startView()
     }
     

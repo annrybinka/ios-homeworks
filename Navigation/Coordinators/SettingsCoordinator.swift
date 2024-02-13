@@ -2,12 +2,9 @@ import UIKit
 
 final class SettingsCoordinator: Coordinatable {
     var startViewController: UIViewController?
-    var userDefaults: UserDefaultsService?
     
     func startView() -> UIViewController {
         let viewModel = SettingsViewModel(coordinator: self)
-        viewModel.userDefaultsService = userDefaults
-        
         let vc = SettingsViewController(viewModel: viewModel)
         vc.tabBarItem = UITabBarItem(
             title: "Settings",

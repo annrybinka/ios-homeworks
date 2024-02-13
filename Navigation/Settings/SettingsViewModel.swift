@@ -2,25 +2,23 @@ import Foundation
 
 protocol SettingsViewModelProtocol {
     func isSortStateAlphabetical() -> Bool
-    func onSortPressed(alphabetical: Bool)
+    func onSortPressed(isAlphabetical: Bool)
     func onChangePasswordPressed()
 }
 
 final class SettingsViewModel: SettingsViewModelProtocol {
     private let coordinator: SettingsCoordinator
-    var userDefaultsService: UserDefaultsService?
     
     init(coordinator: SettingsCoordinator) {
         self.coordinator = coordinator
     }
     
     func isSortStateAlphabetical() -> Bool {
-        userDefaultsService!.getSortState()
+        UserDefaults.standard.bool(forKey: "alphabeticalSortState")
     }
     
-    func onSortPressed(alphabetical: Bool) {
-        userDefaultsService?.saveSortState(alphabetical: alphabetical)
-        userDefaultsService?.notify()
+    func onSortPressed(isAlphabetical: Bool) {
+        UserDefaults.standard.setValue(isAlphabetical, forKey: "alphabeticalSortState")
     }
     
     func onChangePasswordPressed() {

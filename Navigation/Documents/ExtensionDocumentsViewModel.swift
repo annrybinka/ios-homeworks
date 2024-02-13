@@ -7,9 +7,3 @@ extension DocumentsViewModel {
         let isDirectory: Bool
     }
 }
-
-extension DocumentsViewModel: UserDefaultsObserver {
-    func applySortState(isAlphabetical: Bool) {
-        self.alphabeticalSortState = isAlphabetical
-    }
-}

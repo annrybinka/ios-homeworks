@@ -14,7 +14,6 @@ final class PasswordCoordinator: Coordinatable {
         }
         
         let viewModel = PasswordViewModel(
-            model: model,
             coordinator: self,
             state: state!
         )
@@ -22,10 +21,7 @@ final class PasswordCoordinator: Coordinatable {
     }
     
     func startCreatePasswordView() -> UIViewController {
-        let model = PasswordModel()
-        
         let viewModel = PasswordViewModel(
-            model: model,
             coordinator: self,
             state: .create
         )

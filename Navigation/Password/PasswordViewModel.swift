@@ -15,7 +15,7 @@ enum PasswordState {
 }
 
 final class PasswordViewModel: PasswordViewModelProtocol {
-    private var model: PasswordModelProtocol
+    private let model: PasswordModel
     private let coordinator: PasswordCoordinator
     private var state: PasswordState
     
@@ -41,11 +41,10 @@ final class PasswordViewModel: PasswordViewModelProtocol {
     }
     
     init(
-        model: PasswordModelProtocol,
         coordinator: PasswordCoordinator,
         state: PasswordState
     ) {
-        self.model = model
+        self.model = PasswordModel()
         self.coordinator = coordinator
         self.state = state
     }
@@ -74,10 +73,12 @@ final class PasswordViewModel: PasswordViewModelProtocol {
             }
         case .repeat:
             if model.checkRepeated(password: password) {
-                model.save(password: password!)
                 if model.checkPasswordExists() {
                     //close modal view
+                    print("===новый пароль сохранен")
+                    model.save(password: password!)
                 } else {
+                    model.save(password: password!)
                     coordinator.startNextView()
                 }
             } else {

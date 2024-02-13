@@ -2,20 +2,19 @@ import UIKit
 
 final class DocumentsCoordinator: Coordinatable {
     private var nc: UINavigationController?
-    var userDefaults: UserDefaultsService?
     
     func startView() -> UIViewController {
         let documentsViewModel = DocumentsViewModel(
             fileManager: FileManagerService(),
-            rootPath: NSSearchPathForDirectoriesInDomains(
-                .documentDirectory,
-                .userDomainMask,
-                true
-            )[0],
-            alphabeticalSortState: userDefaults!.getSortState()
+            rootPath: "/Users/zhukova/Library/Developer/CoreSimulator/Devices/Documents",
+//            rootPath: NSSearchPathForDirectoriesInDomains(
+//                .documentDirectory,
+//                .userDomainMask,
+//                true
+//            )[0],
+            isSortAlphabetical: UserDefaults.standard.bool(forKey: "alphabeticalSortState")
         )
         documentsViewModel.coordinator = self
-        userDefaults?.add(observer: documentsViewModel)
         
         let vc = DocumentsViewController(viewModel: documentsViewModel)
         vc.title =  "Documents"
@@ -36,11 +35,9 @@ final class DocumentsCoordinator: Coordinatable {
         let documentsViewModel = DocumentsViewModel(
             fileManager: FileManagerService(),
             rootPath: path,
-            alphabeticalSortState: userDefaults!.getSortState()
+            isSortAlphabetical: UserDefaults.standard.bool(forKey: "alphabeticalSortState")
         )
         documentsViewModel.coordinator = self
-        userDefaults?.add(observer: documentsViewModel)
-        
         let vc = DocumentsViewController(viewModel: documentsViewModel)
         vc.title = title
         nc?.pushViewController(vc, animated: true)

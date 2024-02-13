@@ -50,7 +50,6 @@
 		66A079252B5819A60064868B /* PasswordCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A079242B5819A60064868B /* PasswordCoordinator.swift */; };
 		66A3332A2A322B1200B2196A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A333292A322B1200B2196A /* User.swift */; };
 		66BC36A92B63FC97004EE4F9 /* PasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BC36A82B63FC97004EE4F9 /* PasswordModel.swift */; };
-		66DB62D42B7442D000FB23BF /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DB62D32B7442D000FB23BF /* UserDefaultsService.swift */; };
 		66DB62D62B7442F800FB23BF /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DB62D52B7442F800FB23BF /* SettingsViewModel.swift */; };
 		66DB62D92B7A9E8A00FB23BF /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 66DB62D82B7A9E8A00FB23BF /* KeychainAccess */; };
 		66E042CB2A3C687F0096A74C /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E042CA2A3C687F0096A74C /* LoginModel.swift */; };
@@ -142,7 +141,6 @@
 		66A079242B5819A60064868B /* PasswordCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordCoordinator.swift; sourceTree = "<group>"; };
 		66A333292A322B1200B2196A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		66BC36A82B63FC97004EE4F9 /* PasswordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordModel.swift; sourceTree = "<group>"; };
-		66DB62D32B7442D000FB23BF /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 		66DB62D52B7442F800FB23BF /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		66E042CA2A3C687F0096A74C /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		66E042CE2A3CA5850096A74C /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -341,7 +339,6 @@
 		66A079212B5816120064868B /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				66DB62D32B7442D000FB23BF /* UserDefaultsService.swift */,
 				66DB62D52B7442F800FB23BF /* SettingsViewModel.swift */,
 				66A079222B5816360064868B /* SettingsViewController.swift */,
 			);
@@ -536,7 +533,6 @@
 				6600186D2B3C858400523852 /* ExtensionDocumentsViewModel.swift in Sources */,
 				668C11D029AFAC28003F4312 /* AppDelegate.swift in Sources */,
 				66A079252B5819A60064868B /* PasswordCoordinator.swift in Sources */,
-				66DB62D42B7442D000FB23BF /* UserDefaultsService.swift in Sources */,
 				66A0791C2B5810D00064868B /* PasswordViewModel.swift in Sources */,
 				66E042CB2A3C687F0096A74C /* LoginModel.swift in Sources */,
 				66DB62D62B7442F800FB23BF /* SettingsViewModel.swift in Sources */,
