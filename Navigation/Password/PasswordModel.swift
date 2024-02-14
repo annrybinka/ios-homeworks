@@ -3,8 +3,7 @@ import KeychainAccess
 
 final class PasswordModel {
     private var firstPassword: String?
-    //TODO: check creating keychain
-    let keychain = Keychain(accessGroup: "Navigation")
+    let keychain = Keychain()
     
     enum PasswordError: Error {
         case noPassword

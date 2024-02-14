@@ -2,6 +2,7 @@ import UIKit
 
 final class PasswordCoordinator: Coordinatable {
     var appCoordinator: AppCoordinator?
+    var settingsVC: UIViewController?
     
     func startView() -> UIViewController {
         let model = PasswordModel()

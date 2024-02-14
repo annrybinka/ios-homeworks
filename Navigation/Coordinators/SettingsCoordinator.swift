@@ -17,6 +17,7 @@ final class SettingsCoordinator: Coordinatable {
     
     func startChangePasswordScreen() {
         let passwordCoordinator = PasswordCoordinator()
+        passwordCoordinator.settingsVC = startViewController
         let nc = startViewController?.navigationController
         nc?.modalTransitionStyle = .coverVertical
         nc?.modalPresentationStyle = .pageSheet

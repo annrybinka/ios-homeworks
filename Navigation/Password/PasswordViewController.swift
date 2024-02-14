@@ -40,25 +40,6 @@ class PasswordViewController: UIViewController {
         return view
     }()
     
-    private lazy var loginText: UITextField = {
-        let view = UITextField()
-        view.placeholder = "Email or phone"
-        view.text = "user@mail.ru"
-        view.backgroundColor = .systemGray6
-        view.textColor = .black
-        view.font = UIFont.systemFont(ofSize: 16)
-        view.tintColor = UIColor(named: "AccentColor")
-        view.autocapitalizationType = .none
-        view.borderStyle = UITextField.BorderStyle.roundedRect
-        view.autocorrectionType = UITextAutocorrectionType.no
-        view.keyboardType = UIKeyboardType.default
-        view.returnKeyType = UIReturnKeyType.done
-        view.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        view.delegate = self
-        
-        return view
-    }()
-    
     private lazy var passwordText: UITextField = {
         let view = UITextField()
         view.placeholder = "Password"
@@ -76,14 +57,6 @@ class PasswordViewController: UIViewController {
         return view
     }()
     
-    let delimiter: UIView = {
-        let view = UIView()
-        view.backgroundColor = .lightGray
-        view.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
-        
-        return view
-    }()
-    
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -93,8 +66,6 @@ class PasswordViewController: UIViewController {
         stackView.layer.borderWidth = 0.5
         stackView.layer.borderColor = UIColor.lightGray.cgColor
         stackView.spacing = 0
-        stackView.addArrangedSubview(loginText)
-        stackView.addArrangedSubview(delimiter)
         stackView.addArrangedSubview(passwordText)
         
         return stackView
@@ -183,7 +154,7 @@ class PasswordViewController: UIViewController {
     
     private func showAlert(message: String?) {
         let alertController = UIAlertController(
-            title: "Ошибка",
+            title: "Внимание",
             message: message,
             preferredStyle: .alert
         )

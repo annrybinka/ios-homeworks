@@ -28,7 +28,7 @@ final class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Settings"
+        title = "Настройки"
         navigationController?.navigationBar.prefersLargeTitles = true
         setupTable()
     }

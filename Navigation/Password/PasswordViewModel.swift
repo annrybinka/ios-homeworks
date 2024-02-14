@@ -74,9 +74,11 @@ final class PasswordViewModel: PasswordViewModelProtocol {
         case .repeat:
             if model.checkRepeated(password: password) {
                 if model.checkPasswordExists() {
-                    //close modal view
-                    print("===новый пароль сохранен")
+                    alertMessage = "пароль успешно изменён"
                     model.save(password: password!)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        self.coordinator.settingsVC?.dismiss(animated: true)
+                    }
                 } else {
                     model.save(password: password!)
                     coordinator.startNextView()
