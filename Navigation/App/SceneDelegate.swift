@@ -12,7 +12,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         let appCoordinator = AppCoordinator()
         appCoordinator.window = window
-        appCoordinator.startPasswordScreen()
+        appCoordinator.startAuthScreen()
         window.makeKeyAndVisible()
         
         self.window = window
