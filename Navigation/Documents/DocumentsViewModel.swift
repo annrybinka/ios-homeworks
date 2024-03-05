@@ -8,8 +8,9 @@ protocol DocumentsViewModelProtocol {
 }
 
 final class DocumentsViewModel: NSObject, DocumentsViewModelProtocol {
-    let fileManager: FileManagerServiceProtocol
+    private let fileManager: FileManagerServiceProtocol
     let rootPath: String
+    var isSortAlphabetical: Bool
     var coordinator: DocumentsCoordinator?
     var onItemsChanged: (([Item]) -> Void)?
     
@@ -19,22 +20,34 @@ final class DocumentsViewModel: NSObject, DocumentsViewModelProtocol {
         }
     }
     
-    init(fileManager: FileManagerServiceProtocol, rootPath: String) {
+    init(
+        fileManager: FileManagerServiceProtocol,
+        rootPath: String,
+        isSortAlphabetical: Bool
+    ) {
         self.fileManager = fileManager
         self.rootPath = rootPath
+        self.isSortAlphabetical = isSortAlphabetical
     }
     
     private func fullPath(itemTitle: String) -> String {
         rootPath + "/" + itemTitle
     }
     
-    func refreshItems() {
+    private func refreshItems() {
         let documents = fileManager.contentsOfDirectory(path: rootPath)
         items = documents.map { name in
             Item(
                 title: name,
                 isDirectory: fileManager.isDirectory(path: self.fullPath(itemTitle: name))
             )
+        }
+        
+        isSortAlphabetical = UserDefaults.standard.bool(forKey: "alphabeticalSortState")
+        if isSortAlphabetical {
+            items = items.sorted(by: {$0.title < $1.title })
+        } else {
+            items = items.sorted(by: {$0.title > $1.title })
         }
     }
     

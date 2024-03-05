@@ -1,6 +1,20 @@
 import UIKit
 
 final class AppCoordinator: Coordinatable {
+    var window: UIWindow?
+    
+    func startPasswordScreen() {
+        let passwordCoordinator = PasswordCoordinator()
+        passwordCoordinator.appCoordinator = self
+        let vc = passwordCoordinator.startView()
+        window?.rootViewController = vc
+    }
+    
+    func startMainApp() {
+        let tabbarCoordinator = TabbarCoordinator()
+//        tabbarCoordinator.appCoordinator = self
+        window?.rootViewController = tabbarCoordinator.startView()
+    }
     
     func startView() -> UIViewController {
         let feedCoordinator = FeedCoordinator()

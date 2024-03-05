@@ -1,7 +1,6 @@
 import UIKit
 
 class DocumentsViewController: UIViewController {
-    
     private var items: [DocumentsViewModel.Item]
     private var viewModel: DocumentsViewModelProtocol
     
@@ -43,7 +42,7 @@ class DocumentsViewController: UIViewController {
         viewModel.onViewReady()
     }
     
-    func setupTable() {
+    private func setupTable() {
         tableView.delegate = self
         tableView.dataSource = self
     }
