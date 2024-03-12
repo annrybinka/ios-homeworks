@@ -16,14 +16,24 @@ class PostTableViewCell: UITableViewCell {
     
     let postImageView: UIImageView = {
         let view = UIImageView()
-        view.backgroundColor = .black
-        view.contentMode = .scaleAspectFit
+        view.backgroundColor = .white
+        view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
     }()
     
     let postTextLabel: UILabel = {
+        let view = UILabel()
+        view.font = UIFont.systemFont(ofSize: 16, weight: .light)
+        view.textColor = .black
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+    let likesLabel: UILabel = {
         let view = UILabel()
         view.font = UIFont.systemFont(ofSize: 14, weight: .light)
         view.textColor = .systemGray
@@ -33,19 +43,11 @@ class PostTableViewCell: UITableViewCell {
         return view
     }()
     
-    let likesLabel: UILabel = {
-        let view = UILabel()
-        view.font = UIFont.systemFont(ofSize: 16, weight: .light)
-        view.textColor = .black
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        return view
-    }()
-    
     let viewsLabel: UILabel = {
         let view = UILabel()
-        view.font = UIFont.systemFont(ofSize: 16, weight: .light)
-        view.textColor = .black
+        view.font = UIFont.systemFont(ofSize: 14, weight: .light)
+        view.textColor = .systemGray
+        view.numberOfLines = 0
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -61,10 +63,8 @@ class PostTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         contentView.backgroundColor = .white
         accessoryType = .none
-        
         addSubviews()
         setupConstraints()
     }
@@ -72,7 +72,6 @@ class PostTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     func addSubviews() {
         contentView.addSubview(authorLabel)
@@ -83,7 +82,6 @@ class PostTableViewCell: UITableViewCell {
     }
     
     func setupConstraints() {
-        
         NSLayoutConstraint.activate([
             authorLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             authorLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),

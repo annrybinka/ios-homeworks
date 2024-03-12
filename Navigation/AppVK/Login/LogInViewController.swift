@@ -44,7 +44,7 @@ class LogInViewController: UIViewController {
     private lazy var loginText: UITextField = {
         let view = UITextField()
         view.placeholder = "Email or phone"
-        view.text = "test"
+        view.text = "thebestgirl"
         view.backgroundColor = .systemGray6
         view.textColor = .black
         view.font = UIFont.systemFont(ofSize: 16)
@@ -92,7 +92,6 @@ class LogInViewController: UIViewController {
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
-        
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.clipsToBounds = true
@@ -100,7 +99,6 @@ class LogInViewController: UIViewController {
         stackView.layer.borderWidth = 0.5
         stackView.layer.borderColor = UIColor.lightGray.cgColor
         stackView.spacing = 0
-        
         stackView.addArrangedSubview(loginText)
         stackView.addArrangedSubview(delimiter)
         stackView.addArrangedSubview(passwordText)
@@ -112,7 +110,6 @@ class LogInViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .white
         addSubviews()
         setupConstraints()
@@ -121,33 +118,25 @@ class LogInViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         setupKeyboardObservers()
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         removeKeyboardObservers()
-        
     }
     
     private func addSubviews() {
-        
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(logo)
         contentView.addSubview(stackView)
         contentView.addSubview(logInButton)
-        
     }
     
     private func setupConstraints() {
-        
         let safeAreaGuide = view.safeAreaLayoutGuide
         logInButton.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: safeAreaGuide.bottomAnchor),
@@ -174,14 +163,12 @@ class LogInViewController: UIViewController {
             logInButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
             logInButton.heightAnchor.constraint(equalToConstant: 50),
             logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-            
         ])
     }
     
     private func onButtonPressed() {
         let login = loginText.text
         let password = passwordText.text
-        
         loginViewModel.userAuthenticate(login: login, password: password)
     }
     
@@ -204,7 +191,7 @@ class LogInViewController: UIViewController {
     
     private func setupKeyboardObservers() {
         let notificationCenter = NotificationCenter.default
-        
+
         notificationCenter.addObserver(
             self,
             selector: #selector(self.willShowKeyoard(_:)),
@@ -231,11 +218,9 @@ class LogInViewController: UIViewController {
         let notificationCenter = NotificationCenter.default
         notificationCenter.removeObserver(self)
     }
-    
 }
 
 extension LogInViewController: UITextFieldDelegate {
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
