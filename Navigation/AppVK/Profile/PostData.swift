@@ -11,28 +11,28 @@ struct Post {
 let dataSource = [
     Post(
         author: "Mary Asana",
-        description: "Text about yoga, about yoga, about yoga, about yoga, about yoga, about yoga, about yoga, about yoga, about yoga",
+        description: "Text about yoga, about yoga, about yoga, about yoga, about yoga, about yoga, about yoga and yoga",
         image: "yoga",
         likes: 15,
         views: 30
     ),
     Post(
         author: "Chef Harry",
-        description: "10 egg breakfast recipes",
+        description: "10 egg breakfast recipes mmm... try them all 😉",
         image: "food",
         likes: 21,
         views: 45
     ),
     Post(
         author: "Nike dairy",
-        description: "Just do it",
+        description: "💪 Just do it\n💪 Just do it\n💪 Just do it",
         image: "sport",
         likes: 13,
         views: 101
     ),
     Post(
         author: "Buy a new Hyundai 2023 from an authorized dealer",
-        description: "The best cars this year",
+        description: "The best cars this year!",
         image: "cars",
         likes: 99,
         views: 156

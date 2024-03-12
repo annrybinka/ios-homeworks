@@ -8,16 +8,16 @@ final class ProfileCoordinator: Coordinatable {
         let users = [
             User(
                 login: "test",
-                password: "1234",
+                password: "1111",
                 fullName: "Test Name",
-                avatar: UIImage(),
+                avatar: UIImage(named: "10") ?? UIImage(),
                 status: "Test status"
             ),
             User(
-                login: "cat",
-                password: "5678",
-                fullName: "New Hipster Cat",
-                avatar: UIImage(named: "cat") ?? UIImage(),
+                login: "thebestgirl",
+                password: "1234",
+                fullName: "Phoebe Buffay",
+                avatar: UIImage(named: "20") ?? UIImage(),
                 status: "Everything is difficult"
             )
         ]

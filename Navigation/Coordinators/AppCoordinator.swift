@@ -2,6 +2,7 @@ import UIKit
 
 final class AppCoordinator: Coordinatable {
     var window: UIWindow?
+    var navigationController: UINavigationController?
     
     func startPasswordScreen() {
         let passwordCoordinator = PasswordCoordinator()
@@ -10,10 +11,15 @@ final class AppCoordinator: Coordinatable {
         window?.rootViewController = vc
     }
     
+    func startAuthScreen() {
+        let coordinator = AuthCoordinator(appCoordinator: self)
+        navigationController = UINavigationController(rootViewController: coordinator.startView())
+        window?.rootViewController = navigationController
+    }
+    
     func startMainApp() {
         let tabbarCoordinator = TabbarCoordinator()
-//        tabbarCoordinator.appCoordinator = self
-        window?.rootViewController = tabbarCoordinator.startView()
+        navigationController?.pushViewController(tabbarCoordinator.startView(), animated: true)
     }
     
     func startView() -> UIViewController {
