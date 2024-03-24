@@ -1,7 +1,6 @@
 import UIKit
 
 final class ProfileCoordinator: Coordinatable {
-    
     private weak var startViewController: UIViewController?
 
     func startView() -> UIViewController {
@@ -21,24 +20,21 @@ final class ProfileCoordinator: Coordinatable {
                 status: "Everything is difficult"
             )
         ]
-        
         let loginModel = LoginModel(users: users)
         let loginViewModel = LoginViewModel(loginModel: loginModel)
         loginViewModel.coordinator = self
         let logInViewController = LogInViewController(loginViewModel: loginViewModel)
-        
         logInViewController.tabBarItem = UITabBarItem(
             title: "Профиль",
             image: UIImage(systemName: "person.crop.circle.fill"),
             tag: 1
         )
-        
         startViewController = logInViewController
         return logInViewController
     }
     
     func pushProfileViewController(user: User) {
-        let profileViewController = ProfileViewController(user: user)
+        let profileViewController = ProfileViewController(user: user, storage: PostStorage())
         startViewController?.navigationController?.pushViewController(profileViewController, animated: true)
     }
 }
