@@ -1,13 +1,14 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-    
     let assetNames = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"]
     
+    let storage: PostStorageProtocol
     let user: User
 
-    init(user: User) {
+    init(user: User, storage: PostStorageProtocol) {
         self.user = user
+        self.storage = storage
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -16,12 +17,8 @@ class ProfileViewController: UIViewController {
     }
 
     private lazy var postTableView: UITableView = {
-        let tableView = UITableView(frame: .null, style: .grouped)
-        #if DEBUG
-        tableView.backgroundColor = .lightGray
-        #else
-        tableView.backgroundColor = UIColor(named: "AccentColor")
-        #endif
+        let tableView = UITableView(frame: .null, style: .plain)
+        tableView.backgroundColor = .white
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
@@ -41,11 +38,7 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        #if DEBUG
-        view.backgroundColor = .lightGray
-        #else
-        view.backgroundColor = UIColor(named: "AccentColor")
-        #endif
+        view.backgroundColor = .white
         setupUI()
         setupTable()
     }
@@ -77,6 +70,17 @@ class ProfileViewController: UIViewController {
             postTableView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor),
             postTableView.bottomAnchor.constraint(equalTo: safeAreaGuide.bottomAnchor)
         ])
+    }
+    
+    @objc private func doubleTapOnCell(recognizer: UITapGestureRecognizer) {
+        guard let currentCell = recognizer.view else { return }
+        storage.save(post: dataSource[currentCell.tag]) { result in
+            if result {
+                print("ProfileViewController: save post success")
+            } else {
+                print("ProfileViewController: save post fail")
+            }
+        }
     }
 }
 
@@ -110,6 +114,13 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             }
             let post = dataSource[indexPath.row]
             cell.configure(with: post)
+            cell.tag = indexPath.row
+            let action = UITapGestureRecognizer(
+                target: self,
+                action: #selector(doubleTapOnCell(recognizer:))
+            )
+            action.numberOfTapsRequired = 2
+            cell.addGestureRecognizer(action)
             return cell
         }
     }
