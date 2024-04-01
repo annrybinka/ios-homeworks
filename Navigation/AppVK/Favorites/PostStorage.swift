@@ -42,7 +42,7 @@ final class PostStorage: PostStorageProtocol {
     }
     
     func save(post: Post, handler: @escaping (Bool) -> Void) {
-        let model = PostCoreDataModel(context: context, post: post)
+        _ = PostCoreDataModel(context: context, post: post)
         
         guard context.hasChanges else {
             print("PostStorage: post already saved")
