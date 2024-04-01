@@ -1,7 +1,6 @@
 import UIKit
 
 class PostTableViewCell: UITableViewCell {
-    
     static let id = "PostTableViewCell"
     
     let authorLabel: UILabel = {
@@ -28,6 +27,7 @@ class PostTableViewCell: UITableViewCell {
         let view = UILabel()
         view.font = UIFont.systemFont(ofSize: 16, weight: .light)
         view.textColor = .black
+        view.numberOfLines = 0
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -37,7 +37,6 @@ class PostTableViewCell: UITableViewCell {
         let view = UILabel()
         view.font = UIFont.systemFont(ofSize: 14, weight: .light)
         view.textColor = .systemGray
-        view.numberOfLines = 0
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -47,7 +46,6 @@ class PostTableViewCell: UITableViewCell {
         let view = UILabel()
         view.font = UIFont.systemFont(ofSize: 14, weight: .light)
         view.textColor = .systemGray
-        view.numberOfLines = 0
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -103,8 +101,6 @@ class PostTableViewCell: UITableViewCell {
             viewsLabel.topAnchor.constraint(equalTo: postTextLabel.bottomAnchor, constant: 16),
             viewsLabel.trailingAnchor.constraint(equalTo: postTextLabel.trailingAnchor),
             viewsLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
-            
         ])
     }
-
 }

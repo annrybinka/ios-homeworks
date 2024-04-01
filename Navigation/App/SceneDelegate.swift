@@ -12,21 +12,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        
         let appCoordinator = AppCoordinator()
-//        appCoordinator.window = window
-//        appCoordinator.startAuthScreen()
-        window.rootViewController = appCoordinator.startView()
-        window.makeKeyAndVisible()
         
-        self.window = window
+        //MARK: start AppDocumentation
+        appCoordinator.window = window
+        appCoordinator.startAuthScreen()
         
-        //MARK: NetworkService
+        //MARK: start AppVK
+//        window.rootViewController = appCoordinator.startView()
+        
+        //MARK: start NetworkService
 //        guard let appConfiguration = AppConfiguration.allCases.randomElement() else {
 //            print("appConfiguration is nil")
 //            return
 //        }
 //        NetworkService.request(for: appConfiguration)
+        
+        window.makeKeyAndVisible()
+        self.window = window
     }
 
     func sceneDidDisconnect(_ scene: UIScene) { }
@@ -40,4 +43,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidEnterBackground(_ scene: UIScene) { }
 
 }
-
