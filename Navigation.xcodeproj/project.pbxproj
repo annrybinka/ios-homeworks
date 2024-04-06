@@ -59,6 +59,8 @@
 		66A079252B5819A60064868B /* PasswordCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A079242B5819A60064868B /* PasswordCoordinator.swift */; };
 		66A3332A2A322B1200B2196A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A333292A322B1200B2196A /* User.swift */; };
 		66BA8ECC2BAD96E400C90412 /* ExtensionPostCoreDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BA8ECB2BAD96E400C90412 /* ExtensionPostCoreDataModel.swift */; };
+		66BA8ED02BBB079600C90412 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 66BA8ECF2BBB079600C90412 /* Realm */; };
+		66BA8ED22BBB079600C90412 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 66BA8ED12BBB079600C90412 /* RealmSwift */; };
 		66BC36A92B63FC97004EE4F9 /* PasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BC36A82B63FC97004EE4F9 /* PasswordModel.swift */; };
 		66D047E02B88BBF100EDE290 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D047DF2B88BBF100EDE290 /* Authenticator.swift */; };
 		66D047E22B88BC3200EDE290 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D047E12B88BC3200EDE290 /* Storage.swift */; };
@@ -191,6 +193,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66BA8ED22BBB079600C90412 /* RealmSwift in Frameworks */,
+				66BA8ED02BBB079600C90412 /* Realm in Frameworks */,
 				666B0B602A28EB8700A1DD16 /* StorageService.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -472,6 +476,10 @@
 				666B0B642A28EB8700A1DD16 /* PBXTargetDependency */,
 			);
 			name = StorageServiceTests;
+			packageProductDependencies = (
+				66BA8ECF2BBB079600C90412 /* Realm */,
+				66BA8ED12BBB079600C90412 /* RealmSwift */,
+			);
 			productName = StorageServiceTests;
 			productReference = 666B0B5F2A28EB8700A1DD16 /* StorageServiceTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -1010,16 +1018,16 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.47.0;
+				kind = exactVersion;
+				version = 10.47.0;
 			};
 		};
 		66DB62D72B7A9E8A00FB23BF /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.2.2;
+				kind = exactVersion;
+				version = 4.2.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1046,6 +1054,16 @@
 			productName = Realm;
 		};
 		665B44B82BA10E030051582C /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 66565D392B864773005F0C44 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		66BA8ECF2BBB079600C90412 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 66565D392B864773005F0C44 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		66BA8ED12BBB079600C90412 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 66565D392B864773005F0C44 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
