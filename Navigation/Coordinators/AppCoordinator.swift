@@ -4,6 +4,16 @@ final class AppCoordinator: Coordinatable {
     var window: UIWindow?
     var navigationController: UINavigationController?
     
+    func startApp() {
+        startMapApp()
+    }
+    
+    func startMapApp() {
+        let coordinator = MapCoordinator(appCoordinator: self)
+        navigationController = UINavigationController(rootViewController: coordinator.startView())
+        window?.rootViewController = navigationController
+    }
+    
     func startPasswordScreen() {
         let passwordCoordinator = PasswordCoordinator()
         passwordCoordinator.appCoordinator = self

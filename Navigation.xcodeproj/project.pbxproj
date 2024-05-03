@@ -51,6 +51,10 @@
 		668C11D229AFAC28003F4312 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668C11D129AFAC28003F4312 /* SceneDelegate.swift */; };
 		668C11D929AFAC29003F4312 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 668C11D829AFAC29003F4312 /* Assets.xcassets */; };
 		668C11DC29AFAC29003F4312 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 668C11DA29AFAC29003F4312 /* LaunchScreen.storyboard */; };
+		66943FCB2BD016010072CB7C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66943FCA2BD016010072CB7C /* MapViewController.swift */; };
+		66943FCD2BD01E440072CB7C /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66943FCC2BD01E440072CB7C /* MapCoordinator.swift */; };
+		66943FD12BD2C3F80072CB7C /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66943FD02BD2C3F80072CB7C /* MapViewModel.swift */; };
+		66943FD32BD2C7050072CB7C /* RouteBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66943FD22BD2C7050072CB7C /* RouteBuilder.swift */; };
 		66A0791A2B58106F0064868B /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A079192B58106F0064868B /* PasswordViewController.swift */; };
 		66A0791C2B5810D00064868B /* PasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A0791B2B5810D00064868B /* PasswordViewModel.swift */; };
 		66A0791E2B5811EE0064868B /* TabbarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A0791D2B5811EE0064868B /* TabbarCoordinator.swift */; };
@@ -156,6 +160,10 @@
 		668C11D829AFAC29003F4312 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		668C11DB29AFAC29003F4312 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		668C11DD29AFAC29003F4312 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		66943FCA2BD016010072CB7C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		66943FCC2BD01E440072CB7C /* MapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinator.swift; sourceTree = "<group>"; };
+		66943FD02BD2C3F80072CB7C /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		66943FD22BD2C7050072CB7C /* RouteBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteBuilder.swift; sourceTree = "<group>"; };
 		66A079192B58106F0064868B /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		66A0791B2B5810D00064868B /* PasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewModel.swift; sourceTree = "<group>"; };
 		66A0791D2B5811EE0064868B /* TabbarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarCoordinator.swift; sourceTree = "<group>"; };
@@ -373,14 +381,26 @@
 			children = (
 				6643EA0B2A5EEB35009BC2D3 /* App */,
 				6643EA0A2A5EEB2A009BC2D3 /* Coordinators */,
-				66FF7ACA2A4EF30700240AA5 /* CustomView */,
 				665B44B52BA103A70051582C /* AppDocuments */,
 				665B44B42BA1031B0051582C /* AppVK */,
+				66943FC92BD015980072CB7C /* AppMap */,
+				66FF7ACA2A4EF30700240AA5 /* CustomView */,
 				668C11D829AFAC29003F4312 /* Assets.xcassets */,
 				668C11DA29AFAC29003F4312 /* LaunchScreen.storyboard */,
 				668C11DD29AFAC29003F4312 /* Info.plist */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		66943FC92BD015980072CB7C /* AppMap */ = {
+			isa = PBXGroup;
+			children = (
+				66943FCC2BD01E440072CB7C /* MapCoordinator.swift */,
+				66943FD22BD2C7050072CB7C /* RouteBuilder.swift */,
+				66943FD02BD2C3F80072CB7C /* MapViewModel.swift */,
+				66943FCA2BD016010072CB7C /* MapViewController.swift */,
+			);
+			path = AppMap;
 			sourceTree = "<group>";
 		};
 		66A079182B58103E0064868B /* Password */ = {
@@ -610,6 +630,7 @@
 				662F634629BB8E48009D1C59 /* PostViewController.swift in Sources */,
 				66FF7ACE2A4F174800240AA5 /* FeedModel.swift in Sources */,
 				66DB62E02B7FB9B900FB23BF /* AuthCoordinator.swift in Sources */,
+				66943FD12BD2C3F80072CB7C /* MapViewModel.swift in Sources */,
 				6604BFB429FC23430023AE10 /* ProfileHeaderView.swift in Sources */,
 				665B44C02BA1E7D30051582C /* PostStorage.swift in Sources */,
 				66D047E02B88BBF100EDE290 /* Authenticator.swift in Sources */,
@@ -622,7 +643,9 @@
 				668C11D029AFAC28003F4312 /* AppDelegate.swift in Sources */,
 				66A079252B5819A60064868B /* PasswordCoordinator.swift in Sources */,
 				66A0791C2B5810D00064868B /* PasswordViewModel.swift in Sources */,
+				66943FD32BD2C7050072CB7C /* RouteBuilder.swift in Sources */,
 				66E042CB2A3C687F0096A74C /* LoginModel.swift in Sources */,
+				66943FCB2BD016010072CB7C /* MapViewController.swift in Sources */,
 				665B44C52BAA18BB0051582C /* Navigation.xcdatamodeld in Sources */,
 				66DB62D62B7442F800FB23BF /* SettingsViewModel.swift in Sources */,
 				66A0791E2B5811EE0064868B /* TabbarCoordinator.swift in Sources */,
@@ -637,6 +660,7 @@
 				663764A42AFE7A1A009C755E /* DocumentsViewModel.swift in Sources */,
 				6604BFB529FC23430023AE10 /* LogInViewController.swift in Sources */,
 				665B44BE2BA11FCF0051582C /* FavoritesViewController .swift in Sources */,
+				66943FCD2BD01E440072CB7C /* MapCoordinator.swift in Sources */,
 				66FF7AD02A58253200240AA5 /* FeedViewModel.swift in Sources */,
 				666B0B772A28F54700A1DD16 /* PostData.swift in Sources */,
 				662F634829BE6E8D009D1C59 /* InfoViewController.swift in Sources */,
@@ -920,10 +944,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "для корректной работы с картой";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -947,10 +973,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "для корректной работы с картой";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
