@@ -14,14 +14,14 @@ class MapViewController: UIViewController {
         return view
     }()
     
-//    private lazy var segmentedControl: UISegmentedControl = {
-//        let view = UISegmentedControl(items: ["Стандарт", "Спутник", "Гибрид"])
-//        view.selectedSegmentIndex = 0
-//        view.backgroundColor = .white
-//        view.addTarget(self, action: #selector(changeMapType), for: .valueChanged)
-//        
-//        return view
-//    }()
+    private lazy var segmentedControl: UISegmentedControl = {
+        let view = UISegmentedControl(items: ["Стандарт", "Спутник", "Гибрид"])
+        view.selectedSegmentIndex = 0
+        view.backgroundColor = .white
+        view.addTarget(self, action: #selector(changeMapType), for: .valueChanged)
+        
+        return view
+    }()
     
     init(viewModel: MapViewModel) {
         self.viewModel = viewModel
@@ -39,28 +39,28 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setUpUI()
+        setUpUI()
         addGestureRecognizer()
         viewModel.onViewLoaded()
         viewModel.onRouteDidChange = { [weak self] route in
             self?.mapView.addOverlay(route.polyline)
             self?.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
         }
-//        if viewModel.authorizationStatus == false {
-//            showSettingsAlert()
-//        }
+        viewModel.onShowAlert = { [weak self] status in
+            self?.showSettingsAlert()
+        }
     }
     
-//    private func setUpUI() {
-//        mapView.addSubview(segmentedControl)
-//        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        NSLayoutConstraint.activate([
-//            segmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-//            segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-//            segmentedControl.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -38)
-//        ])
-//    }
+    private func setUpUI() {
+        mapView.addSubview(segmentedControl)
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            segmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            segmentedControl.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -38)
+        ])
+    }
     
     private func addAnnotation(coordinates: CLLocationCoordinate2D, title: String) {
         let pin = MKPointAnnotation()
@@ -113,18 +113,18 @@ class MapViewController: UIViewController {
         addAnnotation(coordinates: coordinates, title: "Pin")
     }
     
-//    @objc func changeMapType(sender: UISegmentedControl) {
-//        switch sender.selectedSegmentIndex {
-//        case 0:
-//            mapView.mapType = .standard
-//        case 1:
-//            mapView.mapType = .satellite
-//        case 2:
-//            mapView.mapType = .hybrid
-//        default:
-//            mapView.mapType = .standard
-//        }
-//    }
+    @objc func changeMapType(sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            mapView.mapType = .standard
+        case 1:
+            mapView.mapType = .satellite
+        case 2:
+            mapView.mapType = .hybrid
+        default:
+            mapView.mapType = .standard
+        }
+    }
 }
 
 extension MapViewController: MKMapViewDelegate {
@@ -135,7 +135,7 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: any MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolyline {
             let render = MKPolylineRenderer(overlay: overlay)
-            render.fillColor = .systemPink
+            render.strokeColor = .systemPink
             render.lineWidth = 7
             return render
         }

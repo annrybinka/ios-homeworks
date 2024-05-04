@@ -5,14 +5,13 @@ import CoreLocation
 final class MapViewModel: NSObject {
     private let routeBuilder: RouteBuilderProtocol
     private let locationManager = CLLocationManager()
-//    var authorizationStatus: Bool = true 
     
-//    var onShowAlert: ((Bool) -> Void)?
-//    private(set) {
-//        didSet {
-//            onShowAlert?(!authorizationStatus)
-//        }
-//    }
+    var onShowAlert: ((Bool) -> Void)?
+    private(set) var authorizationStatus: Bool = true {
+        didSet {
+            DispatchQueue.main.async { self.onShowAlert?(self.authorizationStatus) }
+        }
+    }
     
     var onRouteDidChange: ((MKRoute) -> Void)?
     private(set) var route: MKRoute = MKRoute() {
@@ -27,8 +26,8 @@ final class MapViewModel: NSObject {
 
     func onViewLoaded() {
         if locationManager.authorizationStatus == .denied {
-//            authorizationStatus = false
-            print("authorizationStatus is denied")
+            authorizationStatus = false
+            print("locationManager: authorizationStatus is denied")
         }
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
