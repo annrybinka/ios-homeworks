@@ -13,10 +13,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         let appCoordinator = AppCoordinator()
-        
-        //MARK: start AppDocumentation
         appCoordinator.window = window
-        appCoordinator.startAuthScreen()
+        appCoordinator.startApp()
         
         //MARK: start AppVK
 //        window.rootViewController = appCoordinator.startView()
