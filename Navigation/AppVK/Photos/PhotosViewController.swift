@@ -2,7 +2,6 @@ import UIKit
 import iOSIntPackage
 
 class PhotosViewController: UIViewController {
-    
     private static let spacing: CGFloat = 8.0
     
     var photosNames: [String] = []
@@ -25,8 +24,7 @@ class PhotosViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .lightGray
-    
+        view.backgroundColor = AppVKСolor.forBackground
         setupCollection()
         setupUI()
         applyFilter()
@@ -55,15 +53,14 @@ class PhotosViewController: UIViewController {
             PhotosCollectionViewCell.self,
             forCellWithReuseIdentifier: PhotosCollectionViewCell.id
         )
+        photosCollectionView.backgroundColor = AppVKСolor.forBackground
         photosCollectionView.dataSource = self
         photosCollectionView.delegate = self
     }
     
     private func setupUI() {
         view.addSubview(photosCollectionView)
-        
         let safeAreaGuide = view.safeAreaLayoutGuide
-        
         NSLayoutConstraint.activate([
             photosCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             photosCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -74,7 +71,6 @@ class PhotosViewController: UIViewController {
 }
 
 extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int

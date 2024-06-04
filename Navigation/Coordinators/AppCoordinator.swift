@@ -5,7 +5,7 @@ final class AppCoordinator: Coordinatable {
     var navigationController: UINavigationController?
     
     func startApp() {
-        startMapApp()
+        startPasswordScreen()
     }
     
     func startMapApp() {

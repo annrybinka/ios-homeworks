@@ -1,14 +1,13 @@
 import UIKit
 
 class PhotosTableViewCell: UITableViewCell {
-    
     static let id = "PhotosTableViewCell"
 
     private lazy var photosLabel: UILabel = {
         let view = UILabel()
         view.text = "Photos"
         view.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        view.textColor = .black
+        view.textColor = AppVKСolor.forText
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -17,7 +16,7 @@ class PhotosTableViewCell: UITableViewCell {
     private lazy var arrowImageView: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(systemName: "arrow.right")
-        view.tintColor = .black
+        view.tintColor = AppVKСolor.forText
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -35,7 +34,6 @@ class PhotosTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         addSubviews()
         setupConstraints()
     }
@@ -58,15 +56,14 @@ class PhotosTableViewCell: UITableViewCell {
     }
     
     func addSubviews() {
+        contentView.backgroundColor = AppVKСolor.forBackground
         contentView.addSubview(photosLabel)
         contentView.addSubview(arrowImageView)
         contentView.addSubview(photoStackView)
     }
     
     func setupConstraints() {
-        
         let viewSpacing: CGFloat = 8.0
-        
         NSLayoutConstraint.activate([
             photosLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: viewSpacing),
             photosLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: viewSpacing),

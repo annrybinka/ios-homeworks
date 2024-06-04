@@ -1,7 +1,6 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
     var window: UIWindow?
     var appConfiguration: AppConfiguration?
 
@@ -17,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         appCoordinator.startApp()
         
         //MARK: start AppVK
-//        window.rootViewController = appCoordinator.startView()
+        window.rootViewController = appCoordinator.startView()
         
         //MARK: start NetworkService
 //        guard let appConfiguration = AppConfiguration.allCases.randomElement() else {
