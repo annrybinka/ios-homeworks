@@ -1,13 +1,12 @@
 {
-  "originHash" : "0661b1e77c506f07b3c58defde42303b85c4ba509743a04b85af8abdc1b15b51",
   "pins" : [
     {
       "identity" : "iosintpackage",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/TrueMax/iOSIntPackage",
       "state" : {
-        "branch" : "imagepublisher",
-        "revision" : "e1cc0e1b76d7cb8f770d903d85ae9ed91ae026bd"
+        "revision" : "e1cc0e1b76d7cb8f770d903d85ae9ed91ae026bd",
+        "version" : "3.2.3"
       }
     },
     {
@@ -15,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kishikawakatsumi/KeychainAccess",
       "state" : {
-        "revision" : "84e546727d66f1adc5439debad16270d0fdd04e7",
-        "version" : "4.2.2"
+        "branch" : "master",
+        "revision" : "e0c7eebc5a4465a3c4680764f26b7a61f567cdaf"
       }
     },
     {
@@ -24,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-core.git",
       "state" : {
-        "revision" : "a5e87a39cffdcc591f3203c11cfca68100d0b9a6",
-        "version" : "13.26.0"
+        "revision" : "9cf7ef4ad8e2f4c7a519c9a395ca3d253bb87aa8",
+        "version" : "14.6.2"
       }
     },
     {
@@ -33,10 +32,10 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-swift",
       "state" : {
-        "revision" : "55466ae0fb29c5f21866792f05c1fc0c590d7c29",
-        "version" : "10.47.0"
+        "branch" : "master",
+        "revision" : "21ac01d5ae30dcc156e0e43e47c4afe39cc0367f"
       }
     }
   ],
-  "version" : 3
+  "version" : 2
 }

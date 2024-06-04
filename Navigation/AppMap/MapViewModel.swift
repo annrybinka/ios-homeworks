@@ -36,6 +36,7 @@ final class MapViewModel: NSObject {
     func getRoute(destination: CLLocationCoordinate2D) {
         let userCoordinate = locationManager.location?.coordinate
         guard let userCoordinate else {
+            authorizationStatus = false
             print("userCoordinate = nil")
             return
         }
