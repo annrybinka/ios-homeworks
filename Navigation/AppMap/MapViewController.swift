@@ -15,7 +15,11 @@ class MapViewController: UIViewController {
     }()
     
     private lazy var segmentedControl: UISegmentedControl = {
-        let view = UISegmentedControl(items: ["Стандарт", "Спутник", "Гибрид"])
+        let view = UISegmentedControl(items: [
+            NSLocalizedString("mapType1", comment: ""),
+            NSLocalizedString("mapType2", comment: ""),
+            NSLocalizedString("mapType3", comment: "")
+        ])
         view.selectedSegmentIndex = 0
         view.backgroundColor = .white
         view.addTarget(self, action: #selector(changeMapType), for: .valueChanged)
@@ -71,32 +75,43 @@ class MapViewController: UIViewController {
     
     private func showSettingsAlert() {
         let alert = UIAlertController(
-            title: "Выключена служба геолокации",
-            message: "Для стабильной работы приложения необходимо предоставить доступ к вашей геолокации в настройках.",
+            title: NSLocalizedString("alertTitle", comment: "settings"),
+            message: NSLocalizedString("alertMessage", comment: "settings"),
             preferredStyle: .alert
         )
-        let OkAction = UIAlertAction(title: "Перейти в настройки", style: .default) {_ in
+        let OkAction = UIAlertAction(
+            title: NSLocalizedString("alertOkAction", comment: "settings"),
+            style: .default
+        ) {_ in
             if let url = URL(string: "App-Prefs:root=LOCATION_SERVICES") {
                 UIApplication.shared.open(url)
             }
         }
-        let cancelAction = UIAlertAction(title: "Отложить", style: .default) {_ in }
+        let cancelAction = UIAlertAction(
+            title: NSLocalizedString("alertCancelAction", comment: "settings"),
+            style: .default
+        ) {_ in }
         alert.addAction(OkAction)
         alert.addAction(cancelAction)
         present(alert, animated: true)
-        
     }
     
     private func showRouteAlert(for annotation: MKAnnotation) {
         let routeAlert = UIAlertController(
             title: nil,
-            message: "Построить маршрут до этой точки?",
+            message: NSLocalizedString("routeMessage", comment: "alert"),
             preferredStyle: .actionSheet
         )
-        let OkAction = UIAlertAction(title: "да", style: .default) {_ in
+        let OkAction = UIAlertAction(
+            title: NSLocalizedString("YesAction", comment: "alert"),
+            style: .default
+        ) {_ in
             self.viewModel.getRoute(destination: annotation.coordinate)
         }
-        let cancelAction = UIAlertAction(title: "нет", style: .default) {_ in }
+        let cancelAction = UIAlertAction(
+            title: NSLocalizedString("NoAction", comment: "alert"),
+            style: .default
+        ) {_ in }
         routeAlert.addAction(OkAction)
         routeAlert.addAction(cancelAction)
         present(routeAlert, animated: true)
