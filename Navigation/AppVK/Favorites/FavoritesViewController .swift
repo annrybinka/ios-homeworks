@@ -33,7 +33,7 @@ final class FavoritesViewController: UIViewController {
         title = "Избранные посты"
         navigationController?.navigationBar.prefersLargeTitles = true
         view = postTableView
-        view.backgroundColor = .white
+        view.backgroundColor = AppVKСolor.forBackground
         bindViewModel()
         setupTable()
     }

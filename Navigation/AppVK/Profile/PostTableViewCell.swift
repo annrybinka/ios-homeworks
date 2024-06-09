@@ -6,7 +6,7 @@ class PostTableViewCell: UITableViewCell {
     let authorLabel: UILabel = {
         let view = UILabel()
         view.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        view.textColor = .black
+        view.textColor = AppVKСolor.forText
         view.numberOfLines = 2
         view.translatesAutoresizingMaskIntoConstraints = false
         
@@ -15,7 +15,7 @@ class PostTableViewCell: UITableViewCell {
     
     let postImageView: UIImageView = {
         let view = UIImageView()
-        view.backgroundColor = .white
+        view.backgroundColor = AppVKСolor.forBackground
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -26,7 +26,7 @@ class PostTableViewCell: UITableViewCell {
     let postTextLabel: UILabel = {
         let view = UILabel()
         view.font = UIFont.systemFont(ofSize: 16, weight: .light)
-        view.textColor = .black
+        view.textColor = AppVKСolor.forText
         view.numberOfLines = 0
         view.translatesAutoresizingMaskIntoConstraints = false
         
@@ -36,7 +36,7 @@ class PostTableViewCell: UITableViewCell {
     let likesLabel: UILabel = {
         let view = UILabel()
         view.font = UIFont.systemFont(ofSize: 14, weight: .light)
-        view.textColor = .systemGray
+        view.textColor = AppVKСolor.lightGray
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -45,7 +45,7 @@ class PostTableViewCell: UITableViewCell {
     let viewsLabel: UILabel = {
         let view = UILabel()
         view.font = UIFont.systemFont(ofSize: 14, weight: .light)
-        view.textColor = .systemGray
+        view.textColor = AppVKСolor.lightGray
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -61,7 +61,7 @@ class PostTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = AppVKСolor.forBackground
         accessoryType = .none
         addSubviews()
         setupConstraints()

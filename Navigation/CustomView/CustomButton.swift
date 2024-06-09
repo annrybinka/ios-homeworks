@@ -1,7 +1,6 @@
 import UIKit
 
 final class CustomButton: UIButton {
-    
     private let title: String
     private let titleColor: UIColor
     private let tapAction: (() -> Void)
@@ -22,7 +21,7 @@ final class CustomButton: UIButton {
     private func setupButton() {
         self.setTitle(title, for: .normal)
         self.setTitleColor(titleColor, for: .normal)
-        self.setBackgroundImage(UIImage(named: "blue"), for: .normal)
+        self.backgroundColor = UIColor(named: "AccentColor")
         self.layer.cornerRadius = 10
         self.clipsToBounds = true
         

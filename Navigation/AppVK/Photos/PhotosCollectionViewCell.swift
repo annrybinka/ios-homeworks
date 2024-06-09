@@ -1,7 +1,6 @@
 import UIKit
 
 class PhotosCollectionViewCell: UICollectionViewCell {
-    
     static let id = "PhotosCollectionViewCell"
     
     private lazy var photoImageView: UIImageView = {
@@ -19,20 +18,16 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        
-        addSubviews()
-        setupConstraints()
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func addSubviews() {
+    func setupUI() {
         contentView.addSubview(photoImageView)
-    }
-    
-    func setupConstraints() {
+        contentView.backgroundColor = AppVKСolor.forBackground
         NSLayoutConstraint.activate([
             photoImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             photoImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),

@@ -18,7 +18,7 @@ class ProfileViewController: UIViewController {
 
     private lazy var postTableView: UITableView = {
         let tableView = UITableView(frame: .null, style: .plain)
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = AppVKСolor.forBackground
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
@@ -38,7 +38,7 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = AppVKСolor.forBackground
         setupUI()
         setupTable()
     }

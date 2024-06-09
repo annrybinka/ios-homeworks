@@ -1,7 +1,6 @@
 import UIKit
 
 class LogInViewController: UIViewController {
-    
     private var loginViewModel: LoginViewModelProtocol
     
     init(loginViewModel: LoginViewModelProtocol) {
@@ -17,15 +16,15 @@ class LogInViewController: UIViewController {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = true
         scrollView.showsHorizontalScrollIndicator = false
-        scrollView.backgroundColor = .white
+        scrollView.backgroundColor = AppVKСolor.forBackground
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
         return scrollView
     }()
     
-    let contentView: UIView = {
+    private lazy var contentView: UIView = {
         let contentView = UIView()
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = AppVKСolor.forBackground
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
         return contentView
@@ -46,7 +45,7 @@ class LogInViewController: UIViewController {
         view.placeholder = "Email or phone"
         view.text = "thebestgirl"
         view.backgroundColor = .systemGray6
-        view.textColor = .black
+        view.textColor = AppVKСolor.forText
         view.font = UIFont.systemFont(ofSize: 16)
         view.tintColor = UIColor(named: "AccentColor")
         view.autocapitalizationType = .none
@@ -68,7 +67,7 @@ class LogInViewController: UIViewController {
         view.text = "1234"
         view.isSecureTextEntry = true
         view.backgroundColor = .systemGray6
-        view.textColor = .black
+        view.textColor = AppVKСolor.forText
         view.font = UIFont.systemFont(ofSize: 16)
         view.tintColor = UIColor(named: "AccentColor")
         view.autocapitalizationType = .none
@@ -84,7 +83,7 @@ class LogInViewController: UIViewController {
     
     let delimiter: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = AppVKСolor.lightGray
         view.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
         
         return view
@@ -97,7 +96,7 @@ class LogInViewController: UIViewController {
         stackView.clipsToBounds = true
         stackView.layer.cornerRadius = 10
         stackView.layer.borderWidth = 0.5
-        stackView.layer.borderColor = UIColor.lightGray.cgColor
+        stackView.layer.borderColor = AppVKСolor.lightGray.cgColor
         stackView.spacing = 0
         stackView.addArrangedSubview(loginText)
         stackView.addArrangedSubview(delimiter)
@@ -110,7 +109,7 @@ class LogInViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = AppVKСolor.forBackground
         addSubviews()
         setupConstraints()
         bindViewModel()

@@ -1,11 +1,10 @@
 import UIKit
 
 class ProfileHeaderView: UIView {
-    
     let fullNameLabel: UILabel = {
         let view = UILabel()
         view.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        view.textColor = .black
+        view.textColor = AppVKСolor.forText
         view.numberOfLines = 0
         view.translatesAutoresizingMaskIntoConstraints = false
         
@@ -15,7 +14,7 @@ class ProfileHeaderView: UIView {
     let avatarImageView: UIImageView = {
         let view = UIImageView()
         view.layer.borderWidth = 3
-        view.layer.borderColor = UIColor.white.cgColor
+        view.layer.borderColor = AppVKСolor.lightGray.cgColor
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -28,7 +27,7 @@ class ProfileHeaderView: UIView {
     let statusLabel: UILabel = {
         let view = UILabel()
         view.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        view.textColor = .gray
+        view.textColor = AppVKСolor.lightGray
         view.numberOfLines = 0
         view.translatesAutoresizingMaskIntoConstraints = false
         
@@ -51,7 +50,6 @@ class ProfileHeaderView: UIView {
     }
     
     func setupUI() {
-        
         addSubview(fullNameLabel)
         addSubview(avatarImageView)
         addSubview(setStatusButton)
