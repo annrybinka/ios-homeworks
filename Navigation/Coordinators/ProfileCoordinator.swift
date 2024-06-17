@@ -1,6 +1,10 @@
 import UIKit
 
-final class ProfileCoordinator: Coordinatable {
+protocol ProfileCoordinatorProtocol: Coordinatable {
+    func pushProfileViewController(user: User)
+}
+
+final class ProfileCoordinator: ProfileCoordinatorProtocol {
     private weak var startViewController: UIViewController?
 
     func startView() -> UIViewController {

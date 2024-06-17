@@ -6,7 +6,7 @@ protocol LoginViewModelProtocol {
 }
 
 final class LoginViewModel: LoginViewModelProtocol {
-    var coordinator: ProfileCoordinator?
+    var coordinator: ProfileCoordinatorProtocol?
     var onAlertMessageDidChange: ((String) -> Void)?
     
     private(set) var alertMessage: String = "" {
