@@ -92,7 +92,7 @@ class FeedViewController: UIViewController {
     }
     
     private func checkButtonPressed() {
-        feedViewModel.onWordChanged(word: textField.text)
+        feedViewModel.сhangedGuess(word: textField.text)
     }
     
     private func showAlert(message: String?, title: String) {

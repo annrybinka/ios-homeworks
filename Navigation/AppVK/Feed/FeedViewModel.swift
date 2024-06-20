@@ -2,7 +2,7 @@ import UIKit
 
 protocol FeedViewModelProtocol {
     var onAlertStateDidChange: ((FeedViewModel.AlertState) -> Void)? { get set }
-    func onWordChanged(word: String?)
+    func сhangedGuess(word: String?)
     func onFeedPressed()
 }
 
@@ -29,7 +29,7 @@ final class FeedViewModel: FeedViewModelProtocol {
         self.feedModel = feedModel
     }
     
-    func onWordChanged(word: String?) {
+    func сhangedGuess(word: String?) {
         do {
             try feedModel.check(word: word)
             self.alertState = AlertState(
