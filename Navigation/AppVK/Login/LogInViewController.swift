@@ -169,6 +169,7 @@ class LogInViewController: UIViewController {
         let login = loginText.text
         let password = passwordText.text
         loginViewModel.userAuthenticate(login: login, password: password)
+        LocalNotificationsService().createNotificationForLatestUpdates()
     }
     
     private func bindViewModel() {
