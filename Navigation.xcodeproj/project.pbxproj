@@ -29,6 +29,7 @@
 		6637AE052C1C965900A4C75F /* LoginModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6637AE042C1C965900A4C75F /* LoginModelMock.swift */; };
 		6637AE072C1C9E5700A4C75F /* ProfileCoordinatorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6637AE062C1C9E5700A4C75F /* ProfileCoordinatorMock.swift */; };
 		6637AE092C20912E00A4C75F /* FeedModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6637AE082C20912E00A4C75F /* FeedModelMock.swift */; };
+		6637AE0C2C24BC8600A4C75F /* LocalNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6637AE0B2C24BC8600A4C75F /* LocalNotificationsService.swift */; };
 		6640A2E42C00DE7900AA17DA /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 6640A2E32C00DE7900AA17DA /* InfoPlist.xcstrings */; };
 		6643EA0D2A5EEBEC009BC2D3 /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6643EA0C2A5EEBEC009BC2D3 /* Coordinatable.swift */; };
 		6643EA0F2A5EEC14009BC2D3 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6643EA0E2A5EEC14009BC2D3 /* AppCoordinator.swift */; };
@@ -152,6 +153,7 @@
 		6637AE042C1C965900A4C75F /* LoginModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModelMock.swift; sourceTree = "<group>"; };
 		6637AE062C1C9E5700A4C75F /* ProfileCoordinatorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinatorMock.swift; sourceTree = "<group>"; };
 		6637AE082C20912E00A4C75F /* FeedModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModelMock.swift; sourceTree = "<group>"; };
+		6637AE0B2C24BC8600A4C75F /* LocalNotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationsService.swift; sourceTree = "<group>"; };
 		6640A2E32C00DE7900AA17DA /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		6643EA0C2A5EEBEC009BC2D3 /* Coordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
 		6643EA0E2A5EEC14009BC2D3 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -320,6 +322,14 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
+		6637AE0A2C24BC6500A4C75F /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				6637AE0B2C24BC8600A4C75F /* LocalNotificationsService.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 		6643EA0A2A5EEB2A009BC2D3 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
@@ -347,6 +357,7 @@
 		665B44B42BA1031B0051582C /* AppVK */ = {
 			isa = PBXGroup;
 			children = (
+				6637AE0A2C24BC6500A4C75F /* Notifications */,
 				665B44BA2BA11F790051582C /* Favorites */,
 				6604BFB729FC23780023AE10 /* Login */,
 				6604BFB029FC23430023AE10 /* Profile */,
@@ -743,6 +754,7 @@
 				66943FCB2BD016010072CB7C /* MapViewController.swift in Sources */,
 				665B44C52BAA18BB0051582C /* Navigation.xcdatamodeld in Sources */,
 				66DB62D62B7442F800FB23BF /* SettingsViewModel.swift in Sources */,
+				6637AE0C2C24BC8600A4C75F /* LocalNotificationsService.swift in Sources */,
 				66A0791E2B5811EE0064868B /* TabbarCoordinator.swift in Sources */,
 				665B44BC2BA11FBF0051582C /* FavoritesViewModel.swift in Sources */,
 				66E042CF2A3CA5850096A74C /* LoginViewModel.swift in Sources */,
